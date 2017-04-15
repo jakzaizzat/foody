@@ -11,6 +11,17 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/recipes', 'RecipesController@index')->name('recipes');
+Route::get('/recipe/{id}', 'RecipesController@show')->name('recipeShow');
+Route::get('/recipes/add', 'RecipesController@create');
+Route::post('/recipes/add', 'RecipesController@store');
+
+Route::post('/ingredient/add', 'IngredientsController@store');
+
+//Calc Cost
+Route::get('/calcCost/{id}', 'RecipesController@calcCost')->name('calcCost');
