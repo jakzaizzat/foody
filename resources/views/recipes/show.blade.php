@@ -1,6 +1,73 @@
 @extends('layouts.master')
 
 @section('content') 
+
+  <header class="non_hero">
+    <div class="container">
+       @include('layouts.navbar')
+    </div>
+  </header>
+
+  <section class="case-study list_recipe">
+    <div class="container">
+      
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="heading purple">#{{ $recipe->id }} <span class="purple">{{ $recipe->name }}</span></h1>
+
+          <div class="row">
+            <div class="col-md-4 text-center stat-box">
+              <h4>RM</h4>
+              <h1 class="purple"><span class="counter">{{ number_format($recipe->cost, 2, '.', ',') }}</span></h1>
+              <h3>Each Cost</h3>
+            </div>
+            <div class="col-md-4 text-center stat-box">
+              <h4>RM</h4>
+              <h1 class="blue counter">{{ $recipe->cost * ( $recipe->margin/100 + 1) }}</h1>
+              <h3>Selling Price</h3>
+            </div>
+            <div class="col-md-4 text-center stat-box">
+              <h4>RM</h4>
+              <h1 class="pink"><span class="counter">{{$recipe->cost * $recipe->quantity }}</span></h1>
+              <h3>Fund Needed</h3>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 ingredient_list" >
+            <h1 class="heading pink">List of <span class="pink">Ingredient</span></h1>
+              <dl class="dl-horizontal">
+                @foreach($recipe->ingredients as $ingredient)
+                  <dt>{{ $ingredient->name }}</dt>
+                  <dd>RM{{ $ingredient->price }} for {{ $ingredient->usage }} usage</dd>
+                @endforeach
+              </dl>
+            <a href="#" class="btn btn-primary">Edit Items</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+    </div>
+  </section>
+
+  <script src="/js/jquery-2.1.1.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+  <script src="/js/jquery.counterup.min.js"></script>
+  <script>
+  // Counterup
+  $('.counter').counterUp({
+    time: 1000
+  });
+
+  </script>
+
+@endsection
+
+
+
+
  <div class="container">
     <div class="row">
       <div class="one-half offset-by-three column card" style="margin-top: 10%">
@@ -82,6 +149,8 @@
 
           </div>
 
+
+
     <script>
 // Get the modal
 var modal = document.getElementById('myModal');
@@ -109,4 +178,3 @@ window.onclick = function(event) {
     }
 }
 </script>
-@endsection

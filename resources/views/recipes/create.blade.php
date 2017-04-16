@@ -1,5 +1,66 @@
 @extends('layouts.master')
 
+@section('content') 
+
+  <header class="non_hero">
+    <div class="container">
+       @include('layouts.navbar')
+    </div>
+  </header>
+
+  <section class="case-study add_recipe">
+    <div class="container">
+      
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <h1 class="heading purple">Add New</h1>
+            <form method="POST" action="/recipes/add">
+              {{ csrf_field() }}
+
+              @if(count($errors))
+              <div class="row">
+                <div class="columns">
+                  @foreach($errors->all() as $error)
+                    <li>
+                      <u>{{ $error }}</u>
+                    </li>
+                  @endforeach
+                </div>
+              </div>
+              @endif
+
+              <div class="row">
+                <div class="columns form-group">
+                  <label for="exampleEmailInput">Recipe name</label>
+                  <input class="form-control" type="text" placeholder="Nasi Lemak" id="name" name="name" required>
+                </div>
+              </div>
+              <div class="row">
+                <div class="columns form-group">
+                  <label for="exampleEmailInput">Quantity produced</label>
+                  <input class="form-control" type="number" placeholder="100" id="quantity" name="quantity" required>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="columns form-group">
+                  <label for="exampleEmailInput">Profit Margin %</label>
+                  <input class="form-control" type="number" placeholder="Nasi Lemak" id="margin" name="margin" >
+                </div>
+              </div>
+
+              <input class="btn btn-primary" type="submit" value="Submit">
+            </form> 
+        </div>
+      </div>
+
+      
+    </div>
+  </section>
+@endsection
+
+
+
 @section('content')
 <div class="container">
   <div class="row">
