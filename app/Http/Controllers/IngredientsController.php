@@ -7,8 +7,40 @@ use App\Ingredient;
 use App\Recipe;
 
 class IngredientsController extends Controller
-{
-     public function store(Request $request){
+{   
+    public function index($id){
+        
+        $ingredients = Recipe::find($id)->ingredients->where('type', 'material');
+        $recipe = Recipe::find($id);
+
+        return view('ingredient.index', compact('ingredients', 'recipe'));
+    }
+
+    public function labor($id){
+
+        $ingredients = Recipe::find($id)->ingredients->where('type', 'labor');
+        $recipe = Recipe::find($id);
+
+        return view('ingredient.labor', compact('ingredients', 'recipe'));
+    }
+
+    public function production($id){
+
+        $ingredients = Recipe::find($id)->ingredients->where('type', 'production');
+        $recipe = Recipe::find($id);
+
+        return view('ingredient.production', compact('ingredients', 'recipe'));
+    }
+
+    public function nonproduction($id){
+        
+        $ingredients = Recipe::find($id)->ingredients->where('type', 'nonproduction');
+        $recipe = Recipe::find($id);
+
+        return view('ingredient.nonproduction', compact('ingredients', 'recipe'));
+    }
+
+    public function store(Request $request){
         
         //dd(request()->all());
 
@@ -31,7 +63,8 @@ class IngredientsController extends Controller
             'price' => request('price'),
             'usage' => request('usage'),
             'cost' => $cost,
-            'recipe_id' => request('recipe_id')
+            'recipe_id' => request('recipe_id'),
+            'type' => request('type')
         ]);
 
         $id = $request->input('recipe_id');
@@ -40,6 +73,6 @@ class IngredientsController extends Controller
         //return redirect('/recipes');
         //return view('recipes.show')->with('recipe', $recipe);
 
-        return redirect()->route('calcCost', [$id]);
+        return redirect()->route('recipeMaterial', [$id]);
     }
 }

@@ -1,7 +1,7 @@
 
 // Fonts
 @import url(https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700|Open+Sans:300,400,700);
-
+@import url(https://afeld.github.io/emoji-css/emoji.css);
 //Custom
 
 /*!
@@ -48,6 +48,42 @@ img {
 .blue {
   color: #37a7ff;
 }
+.em{
+  height: 1.2em;
+  width: 1.2em;
+  vertical-align: top;
+  margin: 0 3px;
+}
+
+.float-l{
+  float: left;
+}
+.float-r{
+  float: right;
+}
+/* Custom Button */
+.btn{
+  margin: 1em 0;
+}
+.btn-submit{
+  padding: 10px 20px;
+  background-color: #ff2a75;
+  color: #fff;
+}
+.btn-submit:hover{
+  color: #fff;
+}
+.btn-last{
+  background-color: #ffbe61;
+}
+
+/* Form */
+.form-control{
+  height: 40px;
+  margin: 10px 0;
+  border-radius: 0;
+}
+
 /* Hero Section */
 header.hero {
   /*background: url(../assets/bg8.jpg) no-repeat center center fixed;
@@ -135,8 +171,8 @@ a.cta:hover{
 
 /* Case study */
 .case-study .col-md-12 {
-  transform: translateY(-80px);
-  -webkit-transform: translateY(-80px);
+  // transform: translateY(-80px);
+  // -webkit-transform: translateY(-80px);
   padding: 5em 3em;
   background-color: #fff;
   box-shadow: 0 0 100px rgba(0, 0, 0, 0.15);
@@ -538,9 +574,28 @@ ul.main-nav.show-it {
   }
 }
 
+.table>tbody>tr>td{
+  vertical-align: middle;
+}
+
 .ingredient_list{
   box-shadow: none !important;
 }
+.stack{
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  margin: 10px 1%;
+  padding: .8em 1.2em;
+  width: 50%;
+  font-size: .8em;
+  border-radius: 10em;
+  color: #fff;
+  .em{
+    height: 1em;
+    width: 1em;
+  }
+}
+
 .add_recipe .col-md-6{
   padding: 3em;
   margin-top: 3em;
@@ -566,7 +621,43 @@ dt{
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
 }
+.modal-content{
+  width: 50%;
+  min-width: 400px;
+  top: 50px;
+}
+.modal{
+  background-color: rgba(0,0,0,.4);
+}
+.modal-header{
+  background-color: #7447ae;
+  .close{
+    color: #fff;
+  }
+}
 
+.add_item{
+
+    .col-md-8{
+      margin-bottom: 1em;
+      margin-top: 1em;
+      label{
+        font-weight: 400;
+      }
+      input{
+        padding: .5em;
+        border-radius: 4px;
+        width: 100%;
+        border-color: transparent;
+        border: 0.5px solid #7447ae;
+        margin: 0 auto;
+        background: #fff;
+      }
+      input:focus{
+        outline-color: #7447ae;
+      }
+    }
+}
 
 /* Let's optimise it for mobile devices */
 

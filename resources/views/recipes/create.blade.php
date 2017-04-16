@@ -45,11 +45,12 @@
               <div class="row">
                 <div class="columns form-group">
                   <label for="exampleEmailInput">Profit Margin %</label>
-                  <input class="form-control" type="number" placeholder="Nasi Lemak" id="margin" name="margin" >
+                  <input class="form-control" type="number" placeholder="10" id="margin" name="margin" >
                 </div>
               </div>
-
-              <input class="btn btn-primary" type="submit" value="Submit">
+              <div class="row">
+                <input class="btn btn-submit" type="submit" value="Submit">
+              </div>
             </form> 
         </div>
       </div>

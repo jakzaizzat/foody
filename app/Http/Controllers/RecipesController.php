@@ -40,13 +40,13 @@ class RecipesController extends Controller
             'name' => request('name'),
             'quantity' => request('quantity'),
             'margin' => request('margin'),
-            'cost' => 100
+            'cost' => 0
         ]);
 
-        $last = Recipe::orderBy('created_at', 'desc')->first();
+        $id = Recipe::orderBy('created_at', 'desc')->first()->id;
 
-        //return redirect('/recipes');
-        return view('recipes.show')->with('recipe', $last);
+        //return view('recipes.show')->with('recipe', $last);
+        return redirect()->route('recipeShow',[$id]);
     }
 
     public function calcCost($id){
