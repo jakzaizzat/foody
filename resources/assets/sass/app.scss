@@ -659,6 +659,13 @@ dt{
     }
 }
 
+.row.visualization{
+  svg{
+    display: block;
+    margin: 0 auto;
+  }
+}
+
 /* Let's optimise it for mobile devices */
 
 @media (max-width: 720px){

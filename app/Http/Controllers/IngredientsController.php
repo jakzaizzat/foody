@@ -72,7 +72,8 @@ class IngredientsController extends Controller
 
         //return redirect('/recipes');
         //return view('recipes.show')->with('recipe', $recipe);
+        $route = $request->input('route');
 
-        return redirect()->route('recipeMaterial', [$id]);
+        return redirect()->route($route, [$id]);
     }
 }

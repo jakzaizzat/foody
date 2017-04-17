@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content') 
-
+  
   <header class="non_hero">
     <div class="container">
        @include('layouts.navbar')
@@ -16,27 +16,35 @@
           <h1 class="heading purple">#{{ $recipe->id }} <span class="purple">{{ $recipe->name }}</span></h1>
 
           @if(!$recipe->ingredients->isEmpty())
-          <div class="row">
-            <div class="col-md-4 text-center stat-box">
-              <h4>RM</h4>
-              <h1 class="purple"><span class="counter">{{ number_format($recipe->cost, 2, '.', ',') }}</span></h1>
-              <h3>Each Cost</h3>
+            <div class="row">
+              <div class="col-md-4 text-center stat-box">
+                <h4>RM</h4>
+                <h1 class="purple"><span class="counter">{{ number_format($recipe->cost, 2, '.', ',') }}</span></h1>
+                <h3>Each Cost</h3>
+              </div>
+              <div class="col-md-4 text-center stat-box">
+                <h4>RM</h4>
+                <h1 class="blue counter">{{ $recipe->cost * ( $recipe->margin/100 + 1) }}</h1>
+                <h3>Selling Price</h3>
+              </div>
+              <div class="col-md-4 text-center stat-box">
+                <h4>RM</h4>
+                <h1 class="pink"><span class="counter">{{$recipe->cost * $recipe->quantity }}</span></h1>
+                <h3>Fund Needed</h3>
+              </div>
             </div>
-            <div class="col-md-4 text-center stat-box">
-              <h4>RM</h4>
-              <h1 class="blue counter">{{ $recipe->cost * ( $recipe->margin/100 + 1) }}</h1>
-              <h3>Selling Price</h3>
+
+            <div class="row visualization">
+
             </div>
-            <div class="col-md-4 text-center stat-box">
-              <h4>RM</h4>
-              <h1 class="pink"><span class="counter">{{$recipe->cost * $recipe->quantity }}</span></h1>
-              <h3>Fund Needed</h3>
-            </div>
-          </div>
+
           @endif
+
+          @include('visualization.pie');
 
           <div class="row">
             <div class="col-md-12 ingredient_list" >
+            <h1>{{ $json }}</h1>
             @if($recipe->ingredients->isEmpty())
               <h1 class="heading pink">There is no item yet <i class="em em-cry"></i></h1>
               <a href="/recipe/{{ $recipe->id }}/items" class="btn btn-primary">Add One now</a>
@@ -104,13 +112,16 @@
   <script src="/js/jquery-2.1.1.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
   <script src="/js/jquery.counterup.min.js"></script>
-  <script>
-  // Counterup
-  $('.counter').counterUp({
-    time: 1000
-  });
 
+
+  <script>
+    // Counterup
+    $('.counter').counterUp({
+      time: 1000
+    });
   </script>
+
+  
 
 @endsection
 

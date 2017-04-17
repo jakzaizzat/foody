@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Recipe;
-
+use DB;
 
 class RecipesController extends Controller
 {
@@ -17,7 +17,15 @@ class RecipesController extends Controller
     public function show($id){
     	$recipe = Recipe::find($id);
 
-		return view('recipes.show', compact('recipe'));
+
+        $json = DB::table('ingredients')
+                                        ->select(DB::raw('type as label, SUM(cost) as value'))
+                                        ->where('recipe_id',$id)
+                                        ->groupBy('type')
+                                        ->get();
+
+
+		return view('recipes.show', compact('recipe','json'));
     }
 
     public function create(){

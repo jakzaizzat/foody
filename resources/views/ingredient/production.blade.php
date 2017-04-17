@@ -58,6 +58,8 @@
                    <input class="u-full-width" type="text" placeholder="How long lasting this item?" id="usage" name="usage">
                    <input type="hidden" name="recipe_id" value="{{ $recipe->id }}">
                    <input type="hidden" name="type" value="production">
+
+                   <input type="hidden" name="route" value="recipeProduction">
                 </div>
               </div>
               <div class="row">

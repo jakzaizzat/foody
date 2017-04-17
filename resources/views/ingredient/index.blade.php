@@ -58,6 +58,8 @@
                    <input class="u-full-width" type="text" placeholder="10" id="usage" name="usage">
                    <input type="hidden" name="recipe_id" value="{{ $recipe->id }}">
                    <input type="hidden" name="type" value="material">
+
+                   <input type="hidden" name="route" value="recipeMaterial">
                 </div>
               </div>
               <div class="row">
