@@ -36,6 +36,8 @@
 
             <div class="row visualization">
 
+              <div id="tooltip"></div>
+            
             </div>
 
           @endif
@@ -44,7 +46,6 @@
 
           <div class="row">
             <div class="col-md-12 ingredient_list" >
-            <h1>{{ $json }}</h1>
             @if($recipe->ingredients->isEmpty())
               <h1 class="heading pink">There is no item yet <i class="em em-cry"></i></h1>
               <a href="/recipe/{{ $recipe->id }}/items" class="btn btn-primary">Add One now</a>
@@ -71,7 +72,7 @@
                   <tr>
                     <td>{{ $ingredient->name }}</td>
                     <td>RM {{ $ingredient->price }}</td>
-                    <td>RM {{ $ingredient->usage }}</td>
+                    <td> {{ $ingredient->usage }}</td>
                     <td>RM {{ $ingredient->cost }}</td>
 
                     <td>
