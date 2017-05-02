@@ -42,7 +42,7 @@
 
           @endif
 
-          @include('visualization.pie');
+          @include('visualization.spider');
 
           <div class="row">
             <div class="col-md-12 ingredient_list" >

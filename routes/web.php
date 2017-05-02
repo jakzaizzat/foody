@@ -33,3 +33,5 @@ Route::get('/recipe/{id}/nonproduction', 'IngredientsController@nonproduction')-
 Route::get('/calcCost/{id}', 'RecipesController@calcCost')->name('calcCost');
 
 
+//Playground
+Route::get('/spiderjson/{id}', 'RecipesController@spiderShow');

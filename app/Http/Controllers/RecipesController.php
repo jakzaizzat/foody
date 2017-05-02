@@ -26,6 +26,7 @@ class RecipesController extends Controller
 
 
 		return view('recipes.show', compact('recipe','json'));
+        //return $json;
     }
 
     public function create(){
@@ -67,5 +68,24 @@ class RecipesController extends Controller
         $recipe->cost = $cost;
         $recipe->save();
         return redirect()->route('recipeShow',[$id]);
+    }
+
+    //Extract JSON for Show pages
+    public function spiderShow($id){
+        $recipe = Recipe::find($id);
+
+
+        $json = DB::table('ingredients')
+                    ->select(DB::raw('type as label, SUM(cost) as value'))
+                    ->where('recipe_id',$id)
+                    ->groupBy('type')
+                    ->get();
+
+        return $json;
+    }
+
+
+    public function rat(){
+        return view('rat');
     }
 }
