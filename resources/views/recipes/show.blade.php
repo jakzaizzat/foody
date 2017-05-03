@@ -42,7 +42,7 @@
 
           @endif
 
-          @include('visualization.spider');
+          @include('visualization.breakeven');
 
           <div class="row">
             <div class="col-md-12 ingredient_list" >
