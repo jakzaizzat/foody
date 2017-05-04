@@ -84,6 +84,12 @@ class RecipesController extends Controller
         return $json;
     }
 
+    public function viewVisualization($id){
+         $recipe = Recipe::find($id);
+
+         return view('recipes.analysis', compact('recipe')); 
+    }
+
 
     public function rat(){
         return view('rat');

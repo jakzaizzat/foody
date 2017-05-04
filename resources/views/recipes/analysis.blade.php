@@ -34,15 +34,10 @@
               </div>
             </div>
 
-            <div class="row visualization">
-
-              <div id="tooltip"></div>
-            
-            </div>
 
           @endif
 
-          @include('visualization.spider');
+          @include('visualization.breakeven');
 
           <div class="row">
             <div class="col-md-12 ingredient_list single_recipe" >
@@ -50,55 +45,12 @@
               <h1 class="heading pink">There is no item yet <i class="em em-cry"></i></h1>
               <a href="/recipe/{{ $recipe->id }}/items" class="btn btn-primary">Add One now</a>
             @else
-            <h1 class="heading pink">List of <span class="pink">Ingredient</span></h1>
-              <dl class="dl-horizontal">
-               {{--  @foreach($recipe->ingredients as $ingredient)
-                  <dt>{{ $ingredient->name }}</dt>
-                  <dd>RM{{ $ingredient->price }} for {{ $ingredient->usage }} usage</dd>
-                @endforeach --}}
+            <h1 class="heading pink">Timeline for <span class="pink">3</span> Years</h1>
 
-                <table class="table table-hover">
-                <thead>
-                  <tr>
-                    <th>NAME</th>
-                    <th>PRICE</th>
-                    <th>USAGE</th>
-                    <th>COST</th>
-                    <th>TYPE</th>
-                  </tr>
-                </thead>
-                <tbody>
-                @foreach($recipe->ingredients as $ingredient)
-                  <tr>
-                    <td>{{ $ingredient->name }}</td>
-                    <td>RM {{ $ingredient->price }}</td>
-                    <td> {{ $ingredient->usage }}</td>
-                    <td>RM {{ $ingredient->cost }}</td>
+            @include('visualization.longterm');
 
-                    <td>
-                      <div class="stack pink">
-                        @if($ingredient->type == "material")
-                          <i class="em em-watermelon"></i> Ingredient
-                        @elseif($ingredient->type == "labor")
-                          <i class="em em-construction_worker"></i> Labor
-                        @elseif($ingredient->type == "production")
-                          <i class="em em-tractor"></i> Production
-                        @elseif($ingredient->type == "nonproduction")
-                          <i class="em em-office"></i> Non-Production
-                        @else
-                          <i class="em em-no_entry_sign"></i> Undefined
-                        @endif 
-                      </div>
-                    </td>
-
-                  </tr>
-                  @endforeach
-                   </tr>
-                </tbody>
-              </table>
-
-
-              </dl>
+            
+              
             {{-- <a href="/recipe/{{ $recipe->id }}/items" class="btn btn-primary">Edit Items</a> --}}
             <a href="/recipes/add" class="btn btn-lg btn-primary cta">View Visualization </a>
             @endif

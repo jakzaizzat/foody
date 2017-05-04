@@ -1,3 +1,4 @@
+<h1 class="heading pink">You need to sell<span class="pink"> 70</span> to cover your fund</h1>
 <canvas id="spider" width="400" height="200"></canvas>
 
 	<script

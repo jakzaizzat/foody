@@ -777,6 +777,19 @@ dt {
   margin: 0 auto;
 }
 
+
+/* Show Single Page */
+.single_recipe .cta{
+  position: absolute;
+  left: 30%;
+}
+
+
+/* Visualization */
+#spider{
+  max-width: 50%;
+  margin: 5% auto;
+}
 /* Let's optimise it for mobile devices */
 
 @media (max-width: 720px) {

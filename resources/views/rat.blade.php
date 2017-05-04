@@ -16,67 +16,22 @@
 	  
 	    $(function(){
 
+		    var cost = 4.07;
+		    var quantityDay = 20;
+		    
+		    var ingredientsDay = cost * quantityDay; 
+		    var laborDay = 33; 
 
-	    var buyerData = {
-	      labels: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
-	      datasets : [
-	        {
-	          label: "Cost",
-		      backgroundColor: "rgba(59, 89, 152, .8)",
-		      strokeColor: "rgba(220,220,220,1)",
-		      pointColor: "rgba(220,220,220,1)",
-		      pointStrokeColor: "#fff",
-		      pointHighlightFill: "#fff",
-		      pointHighlightStroke: "rgba(220,220,220,1)",
-		      data: [200, 200, 300, 200, 200, 200, 200, 300, 200, 200, 200, 200]
-		    },
-		    {
-		      label: "Sell",
-		      backgroundColor: "rgba(255, 221, 87, 0.6)",
-		      strokeColor: "rgba(220,220,220,1)",
-		      pointColor: "rgba(220,220,220,1)",
-		      pointStrokeColor: "#fff",
-		      pointHighlightFill: "#fff",
-		      pointHighlightStroke: "rgba(220,220,220,1)",
-		      data: [450, 450, 450, 450, 450, 450, 450, 450, 450, 450, 450, 450]
-		    },
-		    {
-		      label: "Profit",
-		      backgroundColor: "rgba(255, 42, 117, .7)",
-		      strokeColor: "rgba(220,220,220,1)",
-		      pointColor: "rgba(220,220,220,1)",
-		      pointStrokeColor: "#fff",
-		      pointHighlightFill: "#fff",
-		      pointHighlightStroke: "rgba(220,220,220,1)",
-		      data: [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1200, 1400]
-		    }	
-	      ]
-	    };
-	    var buyers = document.getElementById('graph').getContext('2d');
-	    
-	    // new Chart(buyers).Line(buyerData, {
-	    //   bezierCurve : true
-	    // });
+		    console.log("Cost ingredient per day : " + ingredientsDay);
+		    console.log("Cost labor per day : " + laborDay);
+
+		    //Production
+
+		    console.table()
 
 
-
-
-	    var myLineChart = new Chart(buyers, {
-		    type: 'line',
-		    data: buyerData,
-		    options: {
-			    scales: {
-			        yAxes: [{
-			            ticks: {
-			                beginAtZero: true
-			            }
-			        }]
-			    }
-			}
 
 		});
-
-	});
 
 	</script>
 

@@ -32,6 +32,8 @@ Route::get('/recipe/{id}/nonproduction', 'IngredientsController@nonproduction')-
 //Calc Cost
 Route::get('/calcCost/{id}', 'RecipesController@calcCost')->name('calcCost');
 
+//Single Visualization 
+Route::get('/recipe/{id}/analysis', 'RecipesController@viewVisualization');
 
 //Fetch Data
 Route::get('/spiderjson/{id}', 'RecipesController@spiderShow');
