@@ -1,7 +1,5 @@
-<canvas id="graph" width="400" height="200"></canvas>
 
-<p>You start getting profit from month 2</p>
-<p>Total Profit at the end of 2017 is RM1400</p>
+	<canvas id="longterm" width="400" height="200"></canvas>
 
 	<script
   src="https://code.jquery.com/jquery-2.2.4.min.js"
@@ -13,67 +11,150 @@
 
 	  
 	    $(function(){
+	    	$.getJSON("/timelinejson/{{ $recipe->id }}", function (result) {
 
 
-	    var buyerData = {
-	      labels: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
-	      datasets : [
-	        {
-	          label: "Cost",
-		      backgroundColor: "rgba(59, 89, 152, .8)",
-		      strokeColor: "rgba(220,220,220,1)",
-		      pointColor: "rgba(220,220,220,1)",
-		      pointStrokeColor: "#fff",
-		      pointHighlightFill: "#fff",
-		      pointHighlightStroke: "rgba(220,220,220,1)",
-		      data: [500, 200, 300, 200, 200, 200, 200, 300, 200, 200, 200, 200]
-		    },
-		    {
-		      label: "Sell",
-		      backgroundColor: "rgba(255, 221, 87, 0.6)",
-		      strokeColor: "rgba(220,220,220,1)",
-		      pointColor: "rgba(220,220,220,1)",
-		      pointStrokeColor: "#fff",
-		      pointHighlightFill: "#fff",
-		      pointHighlightStroke: "rgba(220,220,220,1)",
-		      data: [450, 450, 450, 450, 450, 450, 450, 450, 450, 450, 450, 450]
-		    },
-		    {
-		      label: "Profit",
-		      backgroundColor: "rgba(255, 42, 117, .7)",
-		      strokeColor: "rgba(220,220,220,1)",
-		      pointColor: "rgba(220,220,220,1)",
-		      pointStrokeColor: "#fff",
-		      pointHighlightFill: "#fff",
-		      pointHighlightStroke: "rgba(220,220,220,1)",
-		      data: [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1200, 1400]
-		    }	
-	      ]
-	    };
-	    var buyers = document.getElementById('graph').getContext('2d');
-	    
-	    // new Chart(buyers).Line(buyerData, {
-	    //   bezierCurve : true
-	    // });
+			    var labelGraph = [];
+			    var dataGraph = [];
 
+			    var cost = {{ $recipe->cost }};
+			    console.log("Cost Per Item : " + cost);
+			   
+			    var quantityDay = {{ $recipe->itemPerDay }};
+			    console.log("Item Per Day : " + quantityDay);
 
+			    var margin = {{ $recipe->margin }};
+			    console.log("Margin Price : " + margin + "%");	
 
+			    var sell = cost * (1 + (margin/100));
+				console.log("Selling Price each : " + sell);	
 
-	    var myLineChart = new Chart(buyers, {
-		    type: 'line',
-		    data: buyerData,
-		    options: {
-			    scales: {
-			        yAxes: [{
-			            ticks: {
-			                beginAtZero: true
-			            }
-			        }]
+				var profit = sell - cost;
+				console.log("Profit Price each : " + profit);			    
+
+			    //Month
+			    var laborDay = 10; 
+			    var ingredientsDay = (cost * quantityDay * 30 ) + (laborDay * 30); 
+			     
+
+			    //Pump data from JSON into array
+			    var productionData = [];
+			    var productionRenew = [];
+
+			    for (var i = 0; i < result.length; i++) {
+			        productionData.push(result[i].price);
+			        productionRenew.push(result[i].renew);
 			    }
-			}
+
+
+
+			    console.log('-------------ProductionData-----------');
+			    console.log(productionData);
+
+			    console.log('-------------productionRenew-----------');
+			    console.log(productionRenew);
+
+
+			    console.log("Cost ingredient per day : " + ingredientsDay);
+			    console.log("Cost labor per day : " + laborDay);
+
+			    var timeline = 37;
+
+			    //Processing Data
+
+			    var productionEachMonth = [];
+			    var costCurrentMonth;
+		   		 
+		   		 for (var i = 1; i < timeline; i++) {
+
+			    	labelGraph.push(i);
+			    	console.log('-------------' + i + '-----------');
+
+			    	costCurrentMonth = 0;
+			    	costCurrentMonth += ingredientsDay;
+			    		
+		    		for( var k = 0; k < productionData.length; k++){
+
+		    			if(i == 1 || ( productionRenew[k] + 1 )/i == 1  ||  ( productionRenew[k] + 1 )/(i - 12) == 1 ){
+		    				productionCurrentMonth = costCurrentMonth + productionData[k];
+		    			}else{
+		    				productionCurrentMonth = 0;
+		    			}
+
+		    		}
+		    		
+
+			    	console.log('cost current month is ' + costCurrentMonth);
+
+			    	dataGraph.push(costCurrentMonth);
+			    	productionEachMonth.push(productionCurrentMonth);
+			    }
+
+
+			    //Processing Profit
+			    var profitCurrentMonth = [];
+			    for (var i = 1; i < timeline + 1; i++) {
+			    	profitCurrentMonth.push( (profit * quantityDay * 30) * i );
+			    }
+
+			    
+
+
+
+			    //Chart.JS
+			    var buyerData = {
+			      labels: labelGraph,
+			      datasets : [
+			        {
+			          label: "Cost",
+				      backgroundColor: "rgba(59, 89, 152, .5)",
+				      data: dataGraph
+				    },
+			        {
+			          label: "Profit",
+			          backgroundColor: "rgba(255, 78, 166, 0.8)",
+			          data : profitCurrentMonth
+			        },
+			        {
+			          label: "Production",
+			          backgroundColor: "rgba(242, 255, 91, 0.8)",
+			          data : productionEachMonth
+			        }
+			      ]
+			    };
+
+			    var buyers = document.getElementById('longterm').getContext('2d');
+			   
+
+			    var myLineChart = new Chart(buyers, {
+				    type: 'line',
+				    data: buyerData,
+				    options: {
+					    scales: {
+					    	xAxes: [{
+					            scaleLabel: {
+							        display: true,
+							        labelString: 'Month'
+							    }
+					        }],
+					        yAxes: [{
+					            ticks: {
+					                beginAtZero: true
+					            },
+					            scaleLabel: {
+							        display: true,
+							        labelString: 'Total (RM)'
+							    }
+					        }]
+					    }
+					}
+
+				});
+
+			});    
+
+
 
 		});
-
-	});
 
 	</script>

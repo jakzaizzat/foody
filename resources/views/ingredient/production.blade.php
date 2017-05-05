@@ -53,9 +53,14 @@
                   <label>How much does it cost?</label>
                   <input class="u-full-width" type="text" placeholder="How much the price?" id="cost" name="price">
                 </div>
+
+                <div class="col-md-8 col-md-offset-2">
+                  <label>How long this item last? (in Month)</label>
+                   <input type="number" name="renew" id="renew">
+                </div>
+
                 <div class="col-md-8 col-md-offset-2 form-group">
-                    <label>Ratio here</label>
-                   <input class="u-full-width" type="text" placeholder="How long lasting this item?" id="usage" name="usage">
+                   <input class="u-full-width" type="hidden" placeholder="How long lasting this item?" id="usage" name="usage" value="1">
                    <input type="hidden" name="recipe_id" value="{{ $recipe->id }}">
                    <input type="hidden" name="type" value="production">
 

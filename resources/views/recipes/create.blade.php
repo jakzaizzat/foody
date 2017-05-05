@@ -48,6 +48,14 @@
                   <input class="form-control" type="number" placeholder="10" id="margin" name="margin" >
                 </div>
               </div>
+
+              <div class="row">
+                <div class="columns form-group">
+                  <label for="exampleEmailInput">How many product could be produce in one day?</label>
+                  <input class="form-control" type="number" placeholder="10" id="itemPerDay" name="itemPerDay">
+                </div>
+              </div>
+
               <div class="row">
                 <input class="btn btn-submit" type="submit" value="Submit">
               </div>

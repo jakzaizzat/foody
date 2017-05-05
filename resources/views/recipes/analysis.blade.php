@@ -52,7 +52,7 @@
             
               
             {{-- <a href="/recipe/{{ $recipe->id }}/items" class="btn btn-primary">Edit Items</a> --}}
-            <a href="/recipes/add" class="btn btn-lg btn-primary cta">View Visualization </a>
+            <a href="/recipe/{{ $recipe->id }}" class="btn btn-lg btn-primary cta">Back to Detail </a>
             @endif
             </div>
           </div>

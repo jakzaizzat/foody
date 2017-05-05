@@ -36,7 +36,8 @@ Route::get('/calcCost/{id}', 'RecipesController@calcCost')->name('calcCost');
 Route::get('/recipe/{id}/analysis', 'RecipesController@viewVisualization');
 
 //Fetch Data
-Route::get('/spiderjson/{id}', 'RecipesController@spiderShow');
+Route::get('/spiderjson/{id}', 'VisualizationController@spiderShow');
+Route::get('/timelinejson/{id}', 'VisualizationController@timeline');
 
 //Playground
 Route::get('/rat', 'RecipesController@rat');

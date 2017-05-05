@@ -49,7 +49,8 @@ class IngredientsController extends Controller
             'name' => 'required|min:1',
             'price' => 'required',
             'usage' => 'required',
-            'recipe_id' => 'required'
+            'recipe_id' => 'required',
+            'renew' => 'required'
         ]);
 
         $ingredient = new Ingredient;
@@ -58,13 +59,16 @@ class IngredientsController extends Controller
         $usage = $request->input('usage');
         $cost = $price/$usage;
 
+        $renewInday = $request->input('renew');
+
         Ingredient::create([
             'name' => request('name'),
             'price' => request('price'),
             'usage' => request('usage'),
             'cost' => $cost,
             'recipe_id' => request('recipe_id'),
-            'type' => request('type')
+            'type' => request('type'),
+            'renew' => $renewInday
         ]);
 
         $id = $request->input('recipe_id');

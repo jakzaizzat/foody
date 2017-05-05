@@ -100,7 +100,7 @@
 
               </dl>
             {{-- <a href="/recipe/{{ $recipe->id }}/items" class="btn btn-primary">Edit Items</a> --}}
-            <a href="/recipes/add" class="btn btn-lg btn-primary cta">View Visualization </a>
+            <a href="/recipe/{{ $recipe->id }}/analysis" class="btn btn-lg btn-primary cta">View Visualization </a>
             @endif
             </div>
           </div>

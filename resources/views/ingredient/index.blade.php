@@ -59,6 +59,8 @@
                    <input type="hidden" name="recipe_id" value="{{ $recipe->id }}">
                    <input type="hidden" name="type" value="material">
 
+                   <input type="hidden" name="renew" value="1">
+
                    <input type="hidden" name="route" value="recipeMaterial">
                 </div>
               </div>

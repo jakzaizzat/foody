@@ -40,7 +40,8 @@ class RecipesController extends Controller
         //Validate the request
         $this->validate(request(), [
             'name' => 'required|min:1',
-            'margin' => 'required'
+            'margin' => 'required',
+            'itemPerDay' => 'required'
         ]);
 
         $recipe = new Recipe;
@@ -49,6 +50,7 @@ class RecipesController extends Controller
             'name' => request('name'),
             'quantity' => request('quantity'),
             'margin' => request('margin'),
+            'itemPerDay' => request('itemPerDay'),
             'cost' => 0
         ]);
 
@@ -63,6 +65,9 @@ class RecipesController extends Controller
         $recipe = Recipe::find($id);
         $ingredients = $recipe->ingredients;
 
+        $ingredients = $ingredients->where('type', '!=', 'production');
+        $ingredients = $ingredients->where('type', '!=', 'nonproduction');
+
         $cost = $ingredients->sum('cost');
 
         $recipe->cost = $cost;
@@ -70,20 +75,7 @@ class RecipesController extends Controller
         return redirect()->route('recipeShow',[$id]);
     }
 
-    //Extract JSON for Show pages
-    public function spiderShow($id){
-        $recipe = Recipe::find($id);
-
-
-        $json = DB::table('ingredients')
-                    ->select(DB::raw('type as label, SUM(cost) as value'))
-                    ->where('recipe_id',$id)
-                    ->groupBy('type')
-                    ->get();
-
-        return $json;
-    }
-
+   
     public function viewVisualization($id){
          $recipe = Recipe::find($id);
 
