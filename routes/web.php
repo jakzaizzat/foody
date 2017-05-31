@@ -18,12 +18,21 @@ Route::get('/', function () {
 
 //Recipe
 Route::get('/recipes', 'RecipesController@index')->name('recipes');
+
 Route::get('/recipe/{id}', 'RecipesController@show')->name('recipeShow');
+Route::get('/recipe/{id}/edit', 'RecipesController@edit');
+Route::post('/recipe/{id}/edit', 'RecipesController@update');
+Route::post('/recipe/{id}/delete', 'RecipesController@destroy');
+
 Route::get('/recipes/add', 'RecipesController@create');
 Route::post('/recipes/add', 'RecipesController@store');
 
 //Ingredient
 Route::post('/ingredient/add', 'IngredientsController@store');
+Route::get('/ingredient/{id}/edit', 'IngredientsController@edit');
+Route::post('/ingredient/{id}/edit', 'IngredientsController@update');
+Route::post('/ingredient/{id}/delete', 'IngredientsController@destroy');
+
 Route::get('/recipe/{id}/items', 'IngredientsController@index')->name('recipeMaterial');
 Route::get('/recipe/{id}/labor', 'IngredientsController@labor')->name('recipeLabor');
 Route::get('/recipe/{id}/production', 'IngredientsController@production')->name('recipeProduction');
@@ -41,3 +50,6 @@ Route::get('/timelinejson/{id}', 'VisualizationController@timeline');
 
 //Playground
 Route::get('/rat', 'RecipesController@rat');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

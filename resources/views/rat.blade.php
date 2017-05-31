@@ -14,9 +14,9 @@
 
 	<script type="text/javascript">
 
-	  
+
 	    $(function(){
-	    	$.getJSON("/timelinejson/{{ $recipe->id }}", function (result) {
+	    	$.getJSON("/timelinejson/34", function (result) {
 
 
 			    var labelGraph = [];
@@ -63,11 +63,13 @@
 			    console.log("Cost ingredient per day : " + ingredientsDay);
 			    console.log("Cost labor per day : " + laborDay);
 
-			    var timeline = 25;
+			    var timeline = 37;
 
 			    //Processing Data
-			    
+
+			    var productionEachMonth = [];
 			    var costCurrentMonth;
+		   		 
 		   		 for (var i = 1; i < timeline; i++) {
 
 			    	labelGraph.push(i);
@@ -79,24 +81,29 @@
 		    		for( var k = 0; k < productionData.length; k++){
 
 		    			if(i == 1 || ( productionRenew[k] + 1 )/i == 1  ||  ( productionRenew[k] + 1 )/(i - 12) == 1 ){
-		    				costCurrentMonth += productionData[k];
+		    				productionCurrentMonth = costCurrentMonth + productionData[k];
+		    			}else{
+		    				productionCurrentMonth = 0;
 		    			}
 
 		    		}
-
+		    		
 
 			    	console.log('cost current month is ' + costCurrentMonth);
 
 			    	dataGraph.push(costCurrentMonth);
-
+			    	productionEachMonth.push(productionCurrentMonth);
 			    }
 
 
 			    //Processing Profit
 			    var profitCurrentMonth = [];
-			    for (var i = 0; i < timeline; i++) {
-			    	profitCurrentMonth.push( profit * quantityDay * 30 );
+			    for (var i = 1; i < timeline + 1; i++) {
+			    	profitCurrentMonth.push( (profit * quantityDay * 30) * i );
 			    }
+
+			    
+
 
 
 			    //Chart.JS
@@ -112,6 +119,11 @@
 			          label: "Profit",
 			          backgroundColor: "rgba(255, 78, 166, 0.8)",
 			          data : profitCurrentMonth
+			        },
+			        {
+			          label: "Production",
+			          backgroundColor: "rgba(242, 255, 91, 0.8)",
+			          data : productionEachMonth
 			        }
 			      ]
 			    };
@@ -124,10 +136,20 @@
 				    data: buyerData,
 				    options: {
 					    scales: {
+					    	xAxes: [{
+					            scaleLabel: {
+							        display: true,
+							        labelString: 'Month'
+							    }
+					        }],
 					        yAxes: [{
 					            ticks: {
 					                beginAtZero: true
-					            }
+					            },
+					            scaleLabel: {
+							        display: true,
+							        labelString: 'Total (RM)'
+							    }
 					        }]
 					    }
 					}
@@ -139,6 +161,7 @@
 
 
 		});
+
 
 	</script>
 

@@ -5,7 +5,6 @@
                     <th>NAME</th>
                     <th>PRICE</th>
                     <th>USAGE</th>
-                    <th>COST</th>
                     <th>TYPE</th>
                   </tr>
                 </thead>
@@ -14,8 +13,7 @@
                   <tr>
                     <td>{{ $ingredient->name }}</td>
                     <td>RM {{ $ingredient->price }}</td>
-                    <td>RM {{ $ingredient->usage }}</td>
-                    <td>RM {{ $ingredient->cost }}</td>
+                    <td>{{ $ingredient->usage }}</td>
 
                     <td>
                       <div class="stack pink">

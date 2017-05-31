@@ -1,4 +1,4 @@
-<h1 class="heading pink">You need to sell<span class="pink"> 70</span> to cover your fund</h1>
+<h1 class="heading pink">You need to sell<span class="pink"> 20</span> to cover your fund</h1>
 <canvas id="spider" width="400" height="200"></canvas>
 
 	<script
@@ -11,7 +11,7 @@
 
 	$(function(){
 
-		var quantity = 100;
+		var quantity = 30;
 		
 
 		var cost = 4.07;
@@ -28,20 +28,14 @@
 	    for (var i = 0; i < quantity; i++) {
 	    	
 	    	//Calculate Cost
-	        //totalCost += cost;
-	        
 	        totalCost = quantity * cost;
 	        labelCost.push(i);
 	        dataCost.push(totalCost);
-	        // console.log("----------------" + i + "-----------------------");
-	        // console.log("value " + totalCost);
 
 	        //Calculate Sell
 	        totalSell += sell;
-	        totalSell = totalSell + 0.1;
 	        labelSell.push(i);
 	        dataSell.push(totalSell);
-	        // console.log("value2 " + totalSell);
 
 
 	    }
@@ -75,10 +69,6 @@
 	    };
 	    var buyers = document.getElementById('spider').getContext('2d');
 	    
-	    // new Chart(buyers).Line(buyerData, {
-	    //   bezierCurve : true
-	    // });
-
 
 	    var myLineChart = new Chart(buyers, {
 		    type: 'line',

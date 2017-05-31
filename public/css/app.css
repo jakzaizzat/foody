@@ -787,7 +787,7 @@ dt {
 
 /* Visualization */
 #spider{
-  max-width: 50%;
+  max-width: 80%;
   margin: 5% auto;
 }
 /* Let's optimise it for mobile devices */

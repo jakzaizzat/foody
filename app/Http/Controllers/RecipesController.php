@@ -60,6 +60,46 @@ class RecipesController extends Controller
         return redirect()->route('recipeShow',[$id]);
     }
 
+
+    public function edit($id){
+        $recipe = Recipe::whereId($id)->firstOrFail();
+
+        return view('recipes.edit', compact('recipe'));
+
+    }
+
+
+    public function update($id, Request $request){
+        
+        $recipe = Recipe::whereId($id)->firstOrFail();
+
+        $recipe->name = $request->get('name');
+        $recipe->quantity = $request->get('quantity');
+        $recipe->margin = $request->get('margin');
+        $recipe->itemPerDay = $request->get('itemPerDay');
+        
+        //Recalculate the cost
+        $ingredients = $recipe->ingredients;
+
+        $ingredients = $ingredients->where('type', '!=', 'nonproduction');
+
+        $cost = $ingredients->sum('cost');
+
+        $recipe->cost = $cost;
+
+
+        $recipe->save();
+
+        return redirect('recipes')->with('status', 'The recipe #'.$id.' has been updated!');
+    }
+
+
+    public function destroy($id){
+        $recipe = Recipe::whereId($id)->firstOrFail();
+        $recipe->delete();
+        return redirect('recipes')->with('status', 'The recipe #'.$id.' has been deleted!');
+    }
+
     public function calcCost($id){
 
         $recipe = Recipe::find($id);

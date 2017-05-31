@@ -65,6 +65,7 @@
                     <th>USAGE</th>
                     <th>COST</th>
                     <th>TYPE</th>
+                    <th>OPTIONS</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -91,7 +92,17 @@
                       </div>
                     </td>
 
+                    <td>
+                      <a href="/ingredient/{{ $ingredient->id }}/edit" class="btn btn-md">Edit</a>
+                      <form method="post" action="{!! action('IngredientsController@destroy', $ingredient->id ) !!}" style="display: inline-block;">
+                        <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                         <div>
+                            <button type="submit" class="btn btn-danger btn-xs">Delete</button>
+                        </div>
+                      </form>
+                    </td>
                   </tr>
+
                   @endforeach
                    </tr>
                 </tbody>

@@ -48,7 +48,7 @@
             <h1 class="heading pink">Timeline for <span class="pink">3</span> Years</h1>
 
             @include('visualization.longterm');
-
+            
             
               
             {{-- <a href="/recipe/{{ $recipe->id }}/items" class="btn btn-primary">Edit Items</a> --}}

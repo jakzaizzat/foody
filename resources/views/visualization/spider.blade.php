@@ -1,6 +1,5 @@
 <h1 class="heading pink">Cost   <span class="pink">Consumption</span></h1>
 <canvas id="spider" width="400" height="200"></canvas>
-
 	<script
   src="https://code.jquery.com/jquery-2.2.4.min.js"
   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
@@ -36,16 +35,13 @@
 	    };
 	    var buyers = document.getElementById('spider').getContext('2d');
 	    
-	    // new Chart(buyers).Line(buyerData, {
-	    //   bezierCurve : true
-	    // });
-
 
 	    var myLineChart = new Chart(buyers, {
 		    type: 'polarArea',
 		    data: buyerData
 		});
 	  });
+
 
 	});
 	</script>

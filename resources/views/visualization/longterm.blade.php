@@ -97,10 +97,6 @@
 			    	profitCurrentMonth.push( (profit * quantityDay * 30) * i );
 			    }
 
-			    
-
-
-
 			    //Chart.JS
 			    var buyerData = {
 			      labels: labelGraph,
