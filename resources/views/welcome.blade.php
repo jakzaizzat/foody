@@ -5,8 +5,6 @@
 <header class="hero">
     <div class="container">
 
-    @include('layouts.navbar')
-
     <div class="row">
         <div class="col-md-6 col-md-offset-3 col-xs-12">
           <!-- <a href="#" class="menu"><img src="assets/menu.png"></a> -->

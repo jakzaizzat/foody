@@ -50,6 +50,8 @@ Route::get('/timelinejson/{id}', 'VisualizationController@timeline');
 
 //Playground
 Route::get('/rat', 'RecipesController@rat');
+
+//AUthentication4
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
