@@ -18,6 +18,8 @@
     <link href="/plugins/bower_components/toast-master/css/jquery.toast.css" rel="stylesheet">
     <!-- morris CSS -->
     <link href="/plugins/bower_components/morrisjs/morris.css" rel="stylesheet">
+    <!-- Typehead CSS -->
+    <link href="/plugins/bower_components/typeahead.js-master/dist/typehead-min.css" rel="stylesheet">
     <!-- chartist CSS -->
     <link href="/plugins/bower_components/chartist-js/dist/chartist.min.css" rel="stylesheet">
     <link href="/plugins/bower_components/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css" rel="stylesheet">
@@ -35,7 +37,7 @@
 
 <body>
 
-    @yield('content')
+   
 
     <!-- ============================================================== -->
     <!-- All Jquery -->
@@ -63,6 +65,8 @@
     <script src="/plugins/bower_components/toast-master/js/jquery.toast.js"></script>
     <!--Style Switcher -->
     <script src="/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
+
+     @yield('content')
 </body>
 
 </html>

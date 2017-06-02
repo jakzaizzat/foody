@@ -15,7 +15,7 @@
                   <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                       <h4 class="page-title">Dashboard </h4> </div>
                   <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                      <a href="/recipes/add" target="_blank" class="btn btn-success pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Add New Recipe</a>
+                      <a href="/recipes/add" class="btn btn-success pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Add New Recipe</a>
                       <ol class="breadcrumb">
                           <li class="active"><a href="#">Dashboard</a></li>
                       </ol>
@@ -126,7 +126,7 @@
               <!-- ============================================================== -->
           </div>
           <!-- /.container-fluid -->
-          <footer class="footer text-center"> 2017 &copy; Ample Admin brought to you by themedesigner.in </footer>
+          @include('layouts.footer')
       </div>
 
       <!-- End of ID Wrapper in Navbar.blade -->

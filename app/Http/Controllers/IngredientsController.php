@@ -128,4 +128,6 @@ class IngredientsController extends Controller
         $ingredient->delete();
         return redirect('recipes')->with('status', 'The ingredient #'.$id.' has been deleted!');
     }
+
+
 }

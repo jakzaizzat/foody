@@ -38,8 +38,18 @@ Route::get('/recipe/{id}/labor', 'IngredientsController@labor')->name('recipeLab
 Route::get('/recipe/{id}/production', 'IngredientsController@production')->name('recipeProduction');
 Route::get('/recipe/{id}/nonproduction', 'IngredientsController@nonproduction')->name('recipeNonProduction');
 
+
 //Calc Cost
 Route::get('/calcCost/{id}', 'RecipesController@calcCost')->name('calcCost');
+
+
+
+
+//Rest API
+Route::get('/ingredient/{id}/list', 'VisualizationController@listIng');
+
+
+
 
 //Single Visualization 
 Route::get('/recipe/{id}/analysis', 'RecipesController@viewVisualization');

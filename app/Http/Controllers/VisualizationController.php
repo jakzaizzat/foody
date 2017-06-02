@@ -37,5 +37,14 @@ class VisualizationController extends Controller
         return $json;
     }
 
+    public function listIng($id){
+
+        $json = DB::table('ingredients')
+                    ->select(DB::raw('name'))
+                    ->where('recipe_id', $id)
+                    ->get();
+        return $json;
+    }
+
 
 }

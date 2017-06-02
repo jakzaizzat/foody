@@ -42,6 +42,7 @@
 
                             @if (Auth::guest())
                               <li><a href="/register">Register</a></li>
+                              <li><a href="/login">Login</a></li>
                             @else  
                               <li>
                                   <div class="dw-user-box">
@@ -100,7 +101,7 @@
                     </div>
                 </div>
                 <ul class="nav" id="side-menu">
-                    <li> <a href="/recipe" class="waves-effect"><i class="mdi mdi-food-fork-drink fa-fw"></i><span class="hide-menu">List All Recipe</span></a> </li>
+                    <li> <a href="/recipes" class="waves-effect"><i class="mdi mdi-food-fork-drink fa-fw"></i><span class="hide-menu">List All Recipe</span></a> </li>
                     <li> <a href="/recipes/add" class="waves-effect"><i class="mdi mdi-hamburger fa-fw"></i> <span class="hide-menu">Add Recipe</span></a></li>
                     <li><a href="/ingredient" class="waves-effect"><i class="mdi mdi-truck-delivery fa-fw"></i> <span class="hide-menu">Ingredient</span></a></li>
                     <li class="devider"></li>
