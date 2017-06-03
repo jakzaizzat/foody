@@ -34,28 +34,33 @@
           <div class="row">
               <div class="col-lg-4 col-sm-6 col-xs-12">
                   <div class="white-box">
-                      <h3 class="box-title">Cost</h3>
+                      <h3 class="box-title">Recipe Cost</h3>
                       <ul class="list-inline m-t-30 p-t-10 two-part">
                           <li><i class="icon-notebook text-info"></i></li>
-                          <li class="text-right">RM<span class="counter">{{ number_format($recipe->cost, 2, '.', ',') }}</span></li>
+                          <li class="text-right">RM
+                            <span class="counter">
+
+                              {{ number_format($total, 2, '.', ',') }}
+                            </span>
+                          </li>
                       </ul>
                   </div>
               </div>
               <div class="col-lg-4 col-sm-6 col-xs-12">
                   <div class="white-box">
-                      <h3 class="box-title">Sell</h3>
+                      <h3 class="box-title">Cost Each</h3>
                       <ul class="list-inline m-t-30 p-t-10 two-part">
                           <li><i class="icon-bag text-purple"></i></li>
-                          <li class="text-right">RM<span class="counter">{{ number_format($recipe->cost * ( $recipe->margin/100 + 1),2, '.', ',')  }}</span></li>
+                          <li class="text-right">RM<span class="counter">{{ number_format($total/$recipe->quantity,2, '.', ',')  }}</span></li>
                       </ul>
                   </div>
               </div>
               <div class="col-lg-4 col-sm-6 col-xs-12">
                   <div class="white-box">
-                      <h3 class="box-title">Funds</h3>
+                      <h3 class="box-title">Quantity</h3>
                       <ul class="list-inline m-t-30 p-t-10 two-part">
                           <li><i class="fa fa-money text-success"></i></li>
-                          <li class="text-right">RM<span class="counter">324.80</span></li>
+                          <li class="text-right">RM<span class="counter">{{$recipe->quantity}}</span>{{$recipe->yield_type}}</li>
                       </ul>
                   </div>
               </div>

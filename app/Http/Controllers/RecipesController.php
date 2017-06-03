@@ -17,7 +17,13 @@ class RecipesController extends Controller
     public function show($id){
     	$recipe = Recipe::find($id);
 
-		return view('recipes.show', compact('recipe','json'));
+        $total = 0;
+
+        foreach ($recipe->ingredients as $ingredient){
+            $total += $ingredient->pivot->portion/$ingredient->volume * $ingredient->price ;
+        }
+		
+        return view('recipes.show', compact('recipe','total'));
         //return $json;
     }
 
