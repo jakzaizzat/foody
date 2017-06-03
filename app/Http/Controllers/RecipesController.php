@@ -17,14 +17,6 @@ class RecipesController extends Controller
     public function show($id){
     	$recipe = Recipe::find($id);
 
-
-        $json = DB::table('ingredients')
-                                        ->select(DB::raw('type as label, SUM(cost) as value'))
-                                        ->where('recipe_id',$id)
-                                        ->groupBy('type')
-                                        ->get();
-
-
 		return view('recipes.show', compact('recipe','json'));
         //return $json;
     }
@@ -40,8 +32,9 @@ class RecipesController extends Controller
         //Validate the request
         $this->validate(request(), [
             'name' => 'required|min:1',
-            'margin' => 'required',
-            'itemPerDay' => 'required'
+            'quantity' => 'required',
+            'yield_type' => 'required',
+            'user_id' => 'required'
         ]);
 
         $recipe = new Recipe;
@@ -49,9 +42,8 @@ class RecipesController extends Controller
         Recipe::create([
             'name' => request('name'),
             'quantity' => request('quantity'),
-            'margin' => request('margin'),
-            'itemPerDay' => request('itemPerDay'),
-            'cost' => 0
+            'yield_type' => request('yield_type'),
+            'user_id' => request('user_id')
         ]);
 
         $id = Recipe::orderBy('created_at', 'desc')->first()->id;

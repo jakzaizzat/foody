@@ -85,8 +85,8 @@
                                       <tr>
                                           <th style="width: 70px;" class="text-center">#</th>
                                           <th>NAME</th>
-                                          <th>COST</th>
-                                          <th>SELLING PRICE</th>
+                                          <th>Recipe COST</th>
+                                          <th>Unit Cost</th>
                                           <th>MANAGE</th>
                                       </tr>
                                   </thead>
@@ -94,12 +94,9 @@
                                       @foreach($recipes as $recipe)
                                       <tr>
                                           <td class="text-center">1</td>
-                                          <td><span class="font-medium">{{ $recipe->name }}</span>
-                                              <br/><span class="text-muted">Texas, Unitedd states</span></td>
-                                          <td>RM {{ $recipe->cost }}
-                                              <br/><span class="text-muted">Past : teacher</span></td>
-                                          <td>RM {{ $recipe->cost * ( $recipe->margin/100 + 1) }}
-                                              <br/><span class="text-muted">999 - 444 - 555</span></td>
+                                          <td><span class="font-medium">{{ $recipe->name }}</span></td>
+                                          <td>RM </td>
+                                          <td>RM {{ $recipe->cost * ( $recipe->margin/100 + 1) }}</td>
                                           <td>
                                               <a class="btn btn-primary btn-xs" href="/recipe/{{ $recipe->id }}">View</a>
                                               <a class="btn btn-normal btn-xs" href="/recipe/{{ $recipe->id }}/edit">Edit</a>

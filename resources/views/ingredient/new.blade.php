@@ -1,8 +1,5 @@
 @extends('layouts.master')
 
-
-
-
 @section('content') 
 
 
@@ -29,8 +26,8 @@
              <div class="col-md-6 col-md-offset-3 col-sm-12">
                       <div class="white-box">
                           <center>
-                              <h3 class="box-title m-b-0">Edit Ingredient #{{ $ingredient->id }}</h3>
-                              <p class="text-muted m-b-30 font-13"> Update detail below</p>
+                              <h3 class="box-title m-b-0">New Ingredient Form</h3>
+                              <p class="text-muted m-b-30 font-13"> Enter below detail</p>
                           </center>
                           <form class="no-bg-addon" method="POST">
                               {{ csrf_field() }}
@@ -49,19 +46,19 @@
 
                               <div class="form-group">
                                   <div class="input-group">
-                                      <input class="form-control" type="text" placeholder="Ingredient Name?" id="name" name="name" value="{{ $ingredient->name }}" required>
+                                      <input class="form-control" type="text" placeholder="Ingredient Name?" id="name" name="name" required>
                                       <div class="input-group-addon"><i class="ti-shopping-cart"></i></div>
                                   </div>
                               </div>
                               <div class="form-group">
                                   <div class="input-group">
-                                      <input class="form-control" type="number" placeholder="How much do you pay for it?" id="price" name="price" value="{{ $ingredient->price }}" required>
+                                      <input class="form-control" type="number" placeholder="How much do you pay for it?" id="price" name="price" required>
                                       <div class="input-group-addon"><i class="ti-bolt-alt"></i></div>
                                   </div>
                               </div>
                               <div class="form-group">
                                   <div class="input-group">
-                                      <input class="form-control" type="number" placeholder="How much amount you purchase?" id="volume" name="volume"  value="{{ $ingredient->volume }}" required>
+                                      <input class="form-control" type="number" placeholder="How much amount you purchase?" id="volume" name="volume" >
                                       <div class="input-group-addon"><i class="ti-money"></i></div>
                                   </div>
                               </div>
@@ -72,44 +69,10 @@
                                       <option>tbsp</option>
                                       <option>litre</option>
                                       <option>militre</option>
-
-
-                                      @if($ingredient->unit == "kg")
-                                        <option selected>kg</option>
-                                       @else
-                                        <<option>kg</option>
-                                       @endif
-                                       
-                                       @if($ingredient->unit == "g")
-                                          <option selected>g</option>
-                                       @else
-                                          <option>g</option>
-                                       @endif
-
-                                       @if($ingredient->unit == "tbsp")
-                                          <option selected>tbsp</option>
-                                       @else
-                                          <option>tbsp</option>
-                                       @endif
-
-                                       @if($ingredient->unit == "litre")
-                                          <option selected>litre</option>
-                                       @else
-                                          <option>litre</option>
-                                       @endif
-
-                                       @if($ingredient->unit == "militre")
-                                          <option selected>militre</option>
-                                       @else
-                                          <option>militre</option>
-                                       @endif
-
-
-
                                   </select>
                               </div>
                               <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                              <button class="btn btn-block btn-danger btn-lg btn-rounded">Update</button>
+                              <button class="btn btn-block btn-danger btn-lg btn-rounded">Submit</button>
                           </form>
                       </div>
                   </div>

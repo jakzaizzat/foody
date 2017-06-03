@@ -103,7 +103,8 @@
                 <ul class="nav" id="side-menu">
                     <li> <a href="/recipes" class="waves-effect"><i class="mdi mdi-food-fork-drink fa-fw"></i><span class="hide-menu">List All Recipe</span></a> </li>
                     <li> <a href="/recipes/add" class="waves-effect"><i class="mdi mdi-hamburger fa-fw"></i> <span class="hide-menu">Add Recipe</span></a></li>
-                    <li><a href="/ingredient" class="waves-effect"><i class="mdi mdi-truck-delivery fa-fw"></i> <span class="hide-menu">Ingredient</span></a></li>
+                    <li><a href="/ingredients" class="waves-effect"><i class="mdi mdi-truck-delivery fa-fw"></i> <span class="hide-menu">Ingredient</span></a></li>
+                    <li><a href="/ingredient/new" class="waves-effect"><i class="mdi mdi-truck-delivery fa-fw"></i> <span class="hide-menu">Add Ingredient</span></a></li>
                     <li class="devider"></li>
                 </ul>
             </div>

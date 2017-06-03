@@ -28,6 +28,10 @@ Route::get('/recipes/add', 'RecipesController@create');
 Route::post('/recipes/add', 'RecipesController@store');
 
 //Ingredient
+Route::get('/ingredients', 'IngredientsController@listIng');
+Route::get('/ingredient/new', 'IngredientsController@add');
+Route::post('/ingredient/new', 'IngredientsController@addDB');
+
 Route::post('/ingredient/add', 'IngredientsController@store');
 Route::get('/ingredient/{id}/edit', 'IngredientsController@edit');
 Route::post('/ingredient/{id}/edit', 'IngredientsController@update');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Recipe;
 use DB;
+use Auth;
 
 class VisualizationController extends Controller
 {
@@ -39,9 +40,11 @@ class VisualizationController extends Controller
 
     public function listIng($id){
 
+        $id = Auth::user()->id;
+
         $json = DB::table('ingredients')
-                    ->select(DB::raw('name'))
-                    ->where('recipe_id', $id)
+                    ->select(DB::raw('name,unit'))
+                    ->where('user_id', $id)
                     ->get();
         return $json;
     }

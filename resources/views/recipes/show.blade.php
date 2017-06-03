@@ -24,10 +24,12 @@
           </div>
           <!-- /.row -->
 
-          @if($recipe->ingredients->isEmpty())
+          {{-- @if($recipe->ingredients->isEmpty()) --}}
+
               <h1 class="heading pink">There is no item yet <i class="em em-cry"></i></h1>
               <a href="/recipe/{{ $recipe->id }}/items" class="btn btn-primary">Add One now</a>
-          @else
+          
+          {{-- @else --}}
 
           <div class="row">
               <div class="col-lg-4 col-sm-6 col-xs-12">
@@ -80,10 +82,9 @@
                               <thead>
                                   <tr>
                                       <th>#</th>
-                                      <th>NAME</th>
-                                      <th>PRICE</th>
-                                      <th>USAGE</th>
-                                      <th>TYPE</th>
+                                      <th>Name</th>
+                                      <th>Volume</th>
+                                      <th>Item Cost</th>
                                   </tr>
                               </thead>
                               <tbody>
@@ -91,22 +92,10 @@
                                   <tr>
                                       <td>1</td>
                                       <td class="txt-oflo">{{ $ingredient->name }}</td>
-                                      <td class="txt-oflo">{{ $ingredient->price }}</td>
-                                      <td class="txt-oflo">{{ $ingredient->usage }}</td>
-                                      <td>
-                                        @if($ingredient->type == "material")
-                                          <span class="label label-success label-rouded">{{ $ingredient->type }}</span> 
-                                        @elseif($ingredient->type == "labor")
-                                          <span class="label label-primary label-rouded">{{ $ingredient->type }}</span> 
-                                        @elseif($ingredient->type == "production")
-                                          <span class="label label-info label-rouded">{{ $ingredient->type }}</span> 
-                                        @elseif($ingredient->type == "nonproduction")
-                                          <span class="label label-warning label-rouded">{{ $ingredient->type }}</span> 
-                                        @else
-                                          <span class="label label-danger label-rouded">{{ $ingredient->type }}</span> 
-                                        @endif
-                                        
-                                      </td>
+                                      <td class="txt-oflo">{{ $ingredient->pivot->portion }} {{ $ingredient->unit }}</td>
+                                      <td class="txt-oflo">RM 
+                                         {{ number_format($ingredient->pivot->portion / $ingredient->volume * $ingredient->price, 2, '.', ',') }}
+                                         </td>
                                   </tr>
                                   @endforeach
                               </tbody>
@@ -115,8 +104,8 @@
                   </div>
               </div>
           </div>
-
-          @endif
+{{-- 
+          @endif --}}
 
 
           <!-- ============================================================== -->

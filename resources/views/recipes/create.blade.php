@@ -46,28 +46,24 @@
 
                               <div class="form-group">
                                   <div class="input-group">
-                                      <input class="form-control" type="text" placeholder="Nasi Lemak" id="name" name="name" required>
+                                      <input class="form-control" type="text" placeholder="Recipe Name? " id="name" name="name" required>
                                       <div class="input-group-addon"><i class="ti-shopping-cart"></i></div>
                                   </div>
                               </div>
                               <div class="form-group">
                                   <div class="input-group">
-                                      <input class="form-control" type="number" placeholder="Quantity want to produce" id="quantity" name="quantity" required>
+                                      <input class="form-control" type="number" placeholder="How much yield count?" id="quantity" name="quantity" required>
                                       <div class="input-group-addon"><i class="ti-bolt-alt"></i></div>
                                   </div>
                               </div>
                               <div class="form-group">
                                   <div class="input-group">
-                                      <input class="form-control" type="number" placeholder="How much profit margin? (%)" id="margin" name="margin" >
+                                      <input class="form-control" type="text" placeholder="Yield units" id="yield_type" name="yield_type" >
                                       <div class="input-group-addon"><i class="ti-money"></i></div>
                                   </div>
                               </div>
-                              <div class="form-group">
-                                  <div class="input-group">
-                                      <input class="form-control" type="number" placeholder="10" id="itemPerDay" name="itemPerDay" placeholder="How many product could be produce in one day?" required>
-                                      <div class="input-group-addon"><i class="ti-receipt"></i></div>
-                                  </div>
-                              </div>
+
+                              <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                               <button class="btn btn-block btn-danger btn-lg btn-rounded">Submit</button>
                           </form>
                       </div>

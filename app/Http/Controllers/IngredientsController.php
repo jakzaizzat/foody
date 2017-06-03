@@ -5,12 +5,53 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Ingredient;
 use App\Recipe;
-
+use Auth;
+use DB;
 class IngredientsController extends Controller
 {   
+
+    public function add(){
+        return view('ingredient.new');
+    }
+
+    public function addDB(Request $request){
+        $this->validate(request(), [
+            'name' => 'required|min:1',
+            'price' => 'required',
+            'volume' => 'required',
+            'unit' => 'required',
+        ]);
+
+        $ingredient = new Ingredient;
+
+        Ingredient::create([
+            'name' => request('name'),
+            'price' => request('price'),
+            'volume' => request('volume'),
+            'unit' => request('unit'),
+            'user_id' => request('user_id')
+        ]);
+
+         return redirect('/ingredients')->with('status', 'Added New Ingredient. Have Fun!');
+    }
+
+    public function update($id, Request $request){
+        
+        $ingredient = Ingredient::whereId($id)->firstOrFail();
+
+        $ingredient->name = $request->get('name');
+        $ingredient->price = $request->get('price');
+        $ingredient->volume = $request->get('volume');
+        $ingredient->unit = $request->get('unit');
+
+        $ingredient->save();
+
+        return redirect('/ingredients')->with('status', 'The ingredient #'.$id.' has been updated!');
+    }
+
     public function index($id){
         
-        $ingredients = Recipe::find($id)->ingredients->where('type', 'material');
+        $ingredients = Recipe::find($id)->ingredients()->get();
         $recipe = Recipe::find($id);
 
         return view('ingredient.index', compact('ingredients', 'recipe'));
@@ -47,39 +88,55 @@ class IngredientsController extends Controller
         //Validate the request
         $this->validate(request(), [
             'name' => 'required|min:1',
-            'price' => 'required',
-            'usage' => 'required',
+            'volume' => 'required',
             'recipe_id' => 'required',
-            'renew' => 'required'
+            'ingredient_name' => 'required'
         ]);
 
-        $ingredient = new Ingredient;
+         $id = Auth::user()->id;
 
-        $price = $request->input('price');
-        $usage = $request->input('usage');
-        $cost = $price/$usage;
+        //Get Volume
+        $volume = request('volume');
 
-        $renewInday = $request->input('renew');
+        //Get Recipe ID
+        $recipe_id = request('recipe_id');
+        $recipe = Recipe::find($recipe_id);
 
-        Ingredient::create([
-            'name' => request('name'),
-            'price' => request('price'),
-            'usage' => request('usage'),
-            'cost' => $cost,
-            'recipe_id' => request('recipe_id'),
-            'type' => request('type'),
-            'renew' => $renewInday
-        ]);
+        //Get Ingredient ID based on string
+        $ing_name = request('ingredient_name');
 
-        $id = $request->input('recipe_id');
-        $recipe = Recipe::find($id);
+        $ingredient_table = DB::table('ingredients')
+                            ->select(DB::raw('id'))
+                            ->where('user_id',$id)
+                            ->where('name',$ing_name)
+                            ->get();
 
-        //return redirect('/recipes');
-        //return view('recipes.show')->with('recipe', $recipe);
-        $route = $request->input('route');
+        $ingredient_id = $ingredient_table[0]->id;
 
-        return redirect()->route($route, [$id]);
+        $ingredient = Ingredient::find($ingredient_id);
+
+
+
+        $recipe->ingredients()->save($ingredient, ['portion' => $volume]);
+
+        //$route = $request->input('route');
+
+        //return redirect()->route($route, [$id]);
+        return redirect('recipe/'.$recipe_id.'/items')->with('status', 'Added '.$ing_name.'.');
     }
+
+
+    public function listIng(){
+
+        $id = Auth::user()->id;
+
+        $ingredients = DB::table('ingredients')
+                    ->where('user_id',$id)
+                    ->get();
+
+        return view('ingredient.list', compact('ingredients'));
+    }
+
 
     public function edit($id){
          $ingredient = Ingredient::whereId($id)->firstOrFail();
@@ -87,41 +144,7 @@ class IngredientsController extends Controller
         return view('ingredient.edit', compact('ingredient'));
     }
 
-    public function update($id, Request $request){
-        
-        $ingredient = Ingredient::whereId($id)->firstOrFail();
-
-        $ingredient->name = $request->get('name');
-        $ingredient->price = $request->get('price');
-        $ingredient->usage = $request->get('usage');
-
-        $ingredient->cost = $request->get('price') / $request->get('usage');
-        
-        $ingredient->type = $request->get('type');
-        $ingredient->renew = $request->get('renew');
-        
-        $ingredient->save();
-
-
-        //Recalculate cost
-        $recipe_id = $ingredient->recipe_id;
-
-        $recipe = Recipe::whereId($recipe_id)->firstOrFail();
-
-        $ing = $recipe->ingredients;
-
-        $ing = $ing->where('type', '!=', 'nonproduction');
-
-        $cost = $ing->sum('cost');
-
-        $recipe->cost = $cost;
-
-
-        $recipe->save(); 
-
-
-        return redirect('/recipes')->with('status', 'The ingredient #'.$id.' has been updated!');
-    }
+    
 
     public function destroy($id){
         $ingredient = Ingredient::whereId($id)->firstOrFail();

@@ -5,7 +5,7 @@ namespace App;
 
 class Ingredient extends Model
 {
-    public function recipe(){
-    	return $this->belongsTo(Recipe::class);
+    public function recipes(){
+    	return $this->belongsToMany('App\Recipe')->withPivot('portion');
     }
 }
