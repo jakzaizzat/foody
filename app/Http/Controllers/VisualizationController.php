@@ -14,12 +14,13 @@ class VisualizationController extends Controller
     public function spiderShow($id){
         $recipe = Recipe::find($id);
 
-
-        $json = DB::table('ingredients')
-                    ->select(DB::raw('type as label, SUM(cost) as value'))
-                    ->where('recipe_id',$id)
-                    ->groupBy('type')
+        $json = DB::table('ingredient_recipe')
+                    ->join('ingredients', 'ingredient_recipe.ingredient_id', '=', 'ingredients.id')
+                    ->select('ingredients.name', 'ingredient_recipe.portion', 'ingredients.volume', 'ingredients.price')
+                    ->where('ingredient_recipe.recipe_id', $id)
                     ->get();
+
+
 
         return $json;
     }

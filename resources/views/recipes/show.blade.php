@@ -72,7 +72,7 @@
                   <div class="white-box">
                       <h3 class="box-title">Cost Consumption</h3>
                       <div>
-                          <canvas id="chart3" height="150"></canvas>
+                          <canvas id="cost" height="150"></canvas>
                       </div>
                   </div>
               </div>
@@ -126,8 +126,11 @@
   <!-- Custom Theme JavaScript -->
   <script src="/js/custom.min.js"></script>
   <!-- Chart JS -->
-  <script src="/plugins/bower_components/Chart.js/chartjs.init.js"></script>
-  <script src="/plugins/bower_components/Chart.js/Chart.min.js"></script>
+  {{--<script src="/plugins/bower_components/Chart.js/chartjs.init.js"></script>--}}
+
+
+
+  @include('visualization.cost_consumption')
 
 
 @endsection
