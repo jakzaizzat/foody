@@ -2,16 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Ingredient;
 use Illuminate\Http\Request;
 use App\Recipe;
 use DB;
+use Illuminate\Support\Facades\Auth;
 
 class RecipesController extends Controller
 {
     public function index(){
-    	$recipes = Recipe::latest()->get();
 
-    	return view('recipes.index', compact('recipes'));
+        $id = Auth::user()->id;
+
+    	$recipes = Recipe::where('user_id', $id)->get();
+
+        $totalRecipe = Recipe::where('user_id', $id)->get()->count();
+        $totalIng = Ingredient::where('user_id', $id)->get()->count();
+
+    	return view('recipes.index', compact('recipes','totalRecipe', 'totalIng'));
     }
 
     public function show($id){

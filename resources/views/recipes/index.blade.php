@@ -38,7 +38,7 @@
                           <h3 class="box-title">total recipes</h3>
                           <ul class="list-inline m-t-30 p-t-10 two-part">
                               <li><i class="icon-notebook text-info"></i></li>
-                              <li class="text-right"><span class="counter">23</span></li>
+                              <li class="text-right"><span class="counter">{{ $totalRecipe  }}</span></li>
                           </ul>
                       </div>
                   </div>
@@ -47,7 +47,7 @@
                           <h3 class="box-title">total ingredient</h3>
                           <ul class="list-inline m-t-30 p-t-10 two-part">
                               <li><i class="icon-bag text-purple"></i></li>
-                              <li class="text-right"><span class="counter">169</span></li>
+                              <li class="text-right"><span class="counter">{{ $totalIng }}</span></li>
                           </ul>
                       </div>
                   </div>
@@ -91,12 +91,26 @@
                                       </tr>
                                   </thead>
                                   <tbody>
-                                      @foreach($recipes as $recipe)
+                                      @foreach($recipes as $key=>$recipe)
                                       <tr>
-                                          <td class="text-center">1</td>
+                                          <td class="text-center">{{ ++$key  }}</td>
                                           <td><span class="font-medium">{{ $recipe->name }}</span></td>
-                                          <td>RM </td>
-                                          <td>RM {{ $recipe->cost * ( $recipe->margin/100 + 1) }}</td>
+                                          <td>RM
+
+                                              <?php $total = 0; ?>
+                                              @foreach ($recipe->ingredients as $ingredient)
+                                                <?php
+                                                  $total += $ingredient->pivot->portion/$ingredient->volume * $ingredient->price ;
+                                                ?>
+                                              @endforeach
+
+                                              {{ number_format($total, 2, '.', ',') }}
+                                          </td>
+
+                                          <td>RM
+                                              {{ number_format($total/$recipe->quantity, 2, '.', ',') }}
+                                          </td>
+
                                           <td>
                                               <a class="btn btn-primary btn-xs" href="/recipe/{{ $recipe->id }}">View</a>
                                               <a class="btn btn-normal btn-xs" href="/recipe/{{ $recipe->id }}/edit">Edit</a>

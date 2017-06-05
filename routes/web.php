@@ -38,10 +38,12 @@ Route::post('/ingredient/{id}/edit', 'IngredientsController@update');
 Route::post('/ingredient/{id}/delete', 'IngredientsController@destroy');
 
 Route::get('/recipe/{id}/items', 'IngredientsController@index')->name('recipeMaterial');
-Route::get('/recipe/{id}/labor', 'IngredientsController@labor')->name('recipeLabor');
 Route::get('/recipe/{id}/production', 'IngredientsController@production')->name('recipeProduction');
 Route::get('/recipe/{id}/nonproduction', 'IngredientsController@nonproduction')->name('recipeNonProduction');
 
+//Labor
+Route::get('/recipe/{id}/labor', 'LaborController@listLabor')->name('labor');
+Route::post('/recipe/{id}/labor/add', 'LaborController@store');
 
 //Calc Cost
 Route::get('/calcCost/{id}', 'RecipesController@calcCost')->name('calcCost');

@@ -13,7 +13,7 @@
               <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                   <h4 class="page-title">{{ $recipe->name }}</h4> </div>
               <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                  <a href="javascript:void(0)" target="_blank" class="btn btn-success pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Next</a>
+                  <a href="/recipe/{{ $recipe->id  }}/labor" class="btn btn-success pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Next to Labor</a>
                   <ol class="breadcrumb">
                       <li class="active"><a href="#">Dashboard</a></li>
                   </ol>

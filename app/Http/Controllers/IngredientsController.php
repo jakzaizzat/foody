@@ -59,6 +59,7 @@ class IngredientsController extends Controller
 
     public function labor($id){
 
+
         $ingredients = Recipe::find($id)->ingredients->where('type', 'labor');
         $recipe = Recipe::find($id);
 
@@ -130,9 +131,7 @@ class IngredientsController extends Controller
 
         $id = Auth::user()->id;
 
-        $ingredients = DB::table('ingredients')
-                    ->where('user_id',$id)
-                    ->get();
+        $ingredients = Ingredient::where('user_id', $id)->get();
 
         return view('ingredient.list', compact('ingredients'));
     }

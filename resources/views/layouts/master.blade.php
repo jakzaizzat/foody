@@ -14,8 +14,6 @@
     <link href="/css/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Menu CSS -->
     <link href="/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
-    <!-- toast CSS -->
-    <link href="/plugins/bower_components/toast-master/css/jquery.toast.css" rel="stylesheet">
     <!-- morris CSS -->
     <link href="/plugins/bower_components/morrisjs/morris.css" rel="stylesheet">
     <!-- Typehead CSS -->
@@ -62,7 +60,6 @@
     <!-- Custom Theme JavaScript -->
     <script src="/js/custom.min.js"></script>
     <script src="/js/dashboard1.js"></script>
-    <script src="/plugins/bower_components/toast-master/js/jquery.toast.js"></script>
     <!--Style Switcher -->
     <script src="/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
 

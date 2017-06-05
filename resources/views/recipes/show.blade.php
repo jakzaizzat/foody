@@ -14,7 +14,7 @@
               <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                   <h4 class="page-title">{{ $recipe->name }}</h4> </div>
               <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                  <a href="javascript:void(0)" target="_blank" class="btn btn-success pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Add New Recipe</a>
+                  <a href="/recipe/{{ $recipe->id }}/items" class="btn btn-success pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Add New Ingredient</a>
                   <ol class="breadcrumb">
                       <li ><a href="#">Dashboard</a></li>
                       <li class="active">{{ $recipe->name }}</li>
@@ -24,12 +24,30 @@
           </div>
           <!-- /.row -->
 
-          {{-- @if($recipe->ingredients->isEmpty()) --}}
+           @if($recipe->ingredients->isEmpty())
 
-              <h1 class="heading pink">There is no item yet <i class="em em-cry"></i></h1>
-              <a href="/recipe/{{ $recipe->id }}/items" class="btn btn-primary">Add One now</a>
+              <div class="row">
+                  <div class="col-lg-6 col-sm-12 col-md-6 col-md-offset-3">
+                      <div class="panel">
+                          <div class="p-20">
+                              <div class="row">
+                                  <div class="col-xs-12">
+                                      <h2 class="m-b-0 font-medium text-center">There is no item yet</h2>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="panel-footer bg-extralight">
+                              <ul class="earning-box">
+                                  <li class="center">
+                                      <a href="/recipe/{{ $recipe->id }}/items" class="btn btn-rounded btn-danger btn-block p-10">Add One Now</a>
+                                  </li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+              </div>
           
-          {{-- @else --}}
+           @else
 
           <div class="row">
               <div class="col-lg-4 col-sm-6 col-xs-12">
@@ -93,9 +111,9 @@
                                   </tr>
                               </thead>
                               <tbody>
-                                  @foreach($recipe->ingredients as $ingredient)
+                                  @foreach($recipe->ingredients as $key => $ingredient)
                                   <tr>
-                                      <td>1</td>
+                                      <td>{{ ++$key  }}</td>
                                       <td class="txt-oflo">{{ $ingredient->name }}</td>
                                       <td class="txt-oflo">{{ $ingredient->pivot->portion }} {{ $ingredient->unit }}</td>
                                       <td class="txt-oflo">RM 
@@ -109,8 +127,8 @@
                   </div>
               </div>
           </div>
-{{-- 
-          @endif --}}
+
+          @endif
 
 
           <!-- ============================================================== -->
