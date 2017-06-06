@@ -49,12 +49,8 @@ Route::post('/recipe/{id}/labor/add', 'LaborController@store');
 Route::get('/calcCost/{id}', 'RecipesController@calcCost')->name('calcCost');
 
 
-
-
 //Rest API
 Route::get('/ingredient/{id}/list', 'VisualizationController@listIng');
-
-
 
 
 //Single Visualization 
@@ -62,7 +58,9 @@ Route::get('/recipe/{id}/analysis', 'RecipesController@viewVisualization');
 
 //Fetch Data
 Route::get('/spiderjson/{id}', 'VisualizationController@spiderShow');
+Route::get('/laborcost/{id}', 'VisualizationController@calcLabor');
 Route::get('/timelinejson/{id}', 'VisualizationController@timeline');
+
 
 //Playground
 Route::get('/rat', 'RecipesController@rat');

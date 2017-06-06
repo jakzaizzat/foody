@@ -9,18 +9,46 @@
 <script type="text/javascript">
 
     $(function(){
-        $.getJSON("/spiderjson/{{ $recipe->id }}", function (result) {
 
-            var labels = [],data=[];
-            for (var i = 0; i < result.length; i++) {
-                labels.push(result[i].name);
+        var url_ing = "/spiderjson/{{ $recipe->id }}";
+        var url_labor = "/laborcost/{{ $recipe->id }}";
 
-                var cost = ( (result[i].portion/result[i].volume) * result[i].price).toFixed(2);
+
+
+        var labels = [],data=[];
+
+        $.when(
+            $.getJSON(url_ing),
+            $.getJSON(url_labor)
+        ).done(function(result1,result2){
+
+
+            console.log(result1);
+            console.log(result2);
+
+            for (var i = 0; i < result1[0].length; i++) {
+
+                var name = result1[0][i].name;
+
+                var cost = ( (result1[0][i].portion/result1[0][i].volume) * result1[0][i].price).toFixed(2);
+                labels.push(name);
                 data.push(cost);
                 console.log(i);
-                console.log("name " + result[i].name);
+                console.log("name " + result1[0][i].name);
                 console.log("cost " + cost);
             }
+
+            console.log("-----------LABOR------------");
+            for (var j = 0; j < result2[0].length; j++) {
+                labels.push(result2[0][j].name);
+                console.log(result2[0][j].name);
+                data.push(result2[0][j].cost);
+                console.log(result2[0][j].cost);
+            }
+
+
+
+
 
             var buyerData = {
                 labels : labels,
@@ -37,24 +65,33 @@
                     }
                 ]
             };
+
             var buyers = document.getElementById('cost').getContext('2d');
 
 
             var myLineChart = new Chart(buyers, {
-                type: 'pie',
-                data: buyerData,
-                segmentShowStroke : true,
-                segmentStrokeColor : "#fff",
-                segmentStrokeWidth : 0,
-                animationSteps : 100,
-                tooltipCornerRadius: 0,
-                animationEasing : "easeOutBounce",
-                animateRotate : true,
-                animateScale : false,
-                legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>",
+                    type: 'pie',
+                    data: buyerData,
+                    segmentShowStroke : true,
+                    segmentStrokeColor : "#fff",
+                    segmentStrokeWidth : 0,
+                    animationSteps : 100,
+                    tooltipCornerRadius: 0,
+                    animationEasing : "easeOutBounce",
+                    animateRotate : true,
+                    animateScale : false,
+                    legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>",
                 responsive: true
             });
+
+
+
+
+
         });
+
+
+
 
 
     });

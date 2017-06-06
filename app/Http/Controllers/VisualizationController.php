@@ -25,6 +25,16 @@ class VisualizationController extends Controller
         return $json;
     }
 
+    public function calcLabor($id){
+
+        $json = DB::table('labors')
+                    ->select('name','cost')
+                    ->where('recipe_id', $id)
+                    ->get();
+
+        return $json;
+    }
+
 
     public function timeline($id){
     	$recipe = Recipe::find($id);
