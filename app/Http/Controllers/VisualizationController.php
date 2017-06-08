@@ -60,5 +60,18 @@ class VisualizationController extends Controller
         return $json;
     }
 
+    public function calculator($id){
+
+        $recipe = Recipe::find($id);
+
+        $total = 0;
+
+        foreach ($recipe->ingredients as $ingredient){
+            $total += $ingredient->pivot->portion/$ingredient->volume * $ingredient->price ;
+        }
+
+        return view('recipes.calculator', compact('recipe', 'total'));
+    }
+
 
 }

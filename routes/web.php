@@ -27,6 +27,8 @@ Route::post('/recipe/{id}/delete', 'RecipesController@destroy');
 Route::get('/recipes/add', 'RecipesController@create');
 Route::post('/recipes/add', 'RecipesController@store');
 
+Route::get('/recipe/{id}/calculator', 'VisualizationController@calculator');
+
 //Ingredient
 Route::get('/ingredients', 'IngredientsController@listIng');
 Route::get('/ingredient/new', 'IngredientsController@add');

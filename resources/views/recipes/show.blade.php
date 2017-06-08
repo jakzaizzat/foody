@@ -15,6 +15,7 @@
                   <h4 class="page-title">{{ $recipe->name }}</h4> </div>
               <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                   <a href="/recipe/{{ $recipe->id }}/items" class="btn btn-success pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Add New Ingredient</a>
+                  <a href="/recipe/{{ $recipe->id }}/calculator" class="btn btn-primary pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Calculator</a>
                   <ol class="breadcrumb">
                       <li ><a href="#">Dashboard</a></li>
                       <li class="active">{{ $recipe->name }}</li>

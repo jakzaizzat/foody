@@ -69,7 +69,7 @@ class LaborController extends Controller
             'cost' => $cost
         ]);
 
-        $labor->save();
+//        $labor->save();
 
 
         //Get Recipe ID and Related Labors
@@ -77,7 +77,7 @@ class LaborController extends Controller
         $labors = Labor::where('recipe_id', $recipe_id)->get();
 
 
-//        return view('labor.labor', compact('recipe', 'labors'))->with('status', 'Done add your labor cost');
+        //return view('labor.labor', compact('recipe', 'labors'))->with('status', 'Done add your labor cost');
         return redirect()->route('labor', ['id' => $recipe])->with('status', 'Done add your labor cost');
 
     }
