@@ -50,40 +50,6 @@
 
             @else
 
-                <div class="row">
-                    <div class="col-lg-4 col-sm-6 col-xs-12">
-                        <div class="white-box">
-                            <h3 class="box-title">Recipe Cost</h3>
-                            <ul class="list-inline m-t-30 p-t-10 two-part">
-                                <li><i class="icon-notebook text-info"></i></li>
-                                <li class="text-right">RM
-                                    <span class="counter">
-
-                              {{ number_format($total, 2, '.', ',') }}
-                            </span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 col-xs-12">
-                        <div class="white-box">
-                            <h3 class="box-title">Cost Each</h3>
-                            <ul class="list-inline m-t-30 p-t-10 two-part">
-                                <li><i class="icon-bag text-purple"></i></li>
-                                <li class="text-right">RM<span class="counter">{{ number_format($total/$recipe->quantity,2, '.', ',')  }}</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 col-xs-12">
-                        <div class="white-box">
-                            <h3 class="box-title">Quantity</h3>
-                            <ul class="list-inline m-t-30 p-t-10 two-part">
-                                <li><i class="fa fa-money text-success"></i></li>
-                                <li class="text-right">RM<span class="counter">{{$recipe->quantity}}</span>{{$recipe->yield_type}}</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
 
                 <div class="row">
                     <div class="col-md-4 col-md-offset-4">
@@ -105,18 +71,51 @@
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row dn" id="breakeven_section">
                     <div class="col-lg-12">
                         <div class="white-box">
-                            <h3 class="box-title">Your Selling Price</h3>
-                            <p class="text-muted m-b-30 font-13 sell_price" id="breakeven_msg"> Price of each unit</p>
                             <div>
                                 {{--<canvas id="cost" height="150"></canvas>--}}
                                 @include('visualization.break_even');
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-3 col-xs-12">
+                        <div class="white-box analytics-info">
+                            <h3 class="box-title">Revenue</h3>
+                            <span id="revenue_stat">
+                                <i class="ti-arrow-up text-info"></i>
+                                <span class="text-info"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-xs-12">
+                        <div class="white-box analytics-info">
+                            <h3 class="box-title">Gross Profit Margin</h3>
+                            <span id="gross_margin">
+                                <i class="ti-arrow-up text-info"></i>
+                                <span class="text-info"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xs-12">
+                        <div class="white-box analytics-info">
+                            <h3 class="box-title">Break-Even Point</h3>
+                            <span id="break_even">
+                                <i class="ti-arrow-up text-info"></i>
+                                <span class="text-info"></span>
+                            </span>
+                        </div>
+                    </div>
                 </div>
+
+                {{--<div class="row dn" id="profit_section">--}}
+                    {{--<div class="col-md-12">--}}
+                        {{--<div class="white-box">--}}
+                            {{--@include('visualization.longterm');--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
 
         @endif
 

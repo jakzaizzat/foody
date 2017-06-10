@@ -18,7 +18,17 @@
 <script type="text/javascript">
 
 
+
+    //Breakeven
     $('#calcBtn').click(function(){
+
+        //Remove class
+        $('#breakeven_section').removeClass('dn');
+        $('#profit_section').removeClass('dn');
+        $('#gross_margin i').removeClass("ti-arrow-down ti-arrow-up text-info text-danger");
+        $('#revenue_stat i').removeClass("ti-arrow-down ti-arrow-up text-info text-danger");
+        $('#gross_margin span').removeClass("text-info text-danger");
+        $('#revenue_stat span').removeClass("text-info text-danger");
 
         //reset
         var resetCanvas = function(){
@@ -29,6 +39,8 @@
 
         resetCanvas();
 
+
+        //Get Sell price from user
 
         var sell = $('#sell_price').val();
         sell = parseFloat(sell);
@@ -83,7 +95,8 @@
 
         console.log("You need to sell " + breakeven + " units to cover your fund");
 
-        $('#breakeven_msg').text("You need to sell " + breakeven + " units to cover your fund");
+        //$('#breakeven_msg').text("You need to sell " + breakeven + " units to cover your fund");
+        $('#break_even span').text("You need to sell " + breakeven + " units to cover your fund");
 
         var ctx1 = document.getElementById("chart1").getContext("2d");
         var data1 = {
@@ -136,8 +149,56 @@
         });
 
 
+
+
         dataCost = [];
         dataSell = [];
+
+
+        //Calculate Gross Profit Margin %
+        var gross = (totalSell - totalCost).toFixed(2);
+
+        var margin = gross/totalSell * 100;
+        margin = margin.toFixed(2);
+
+        console.log("Gross Profit Margin: " + margin + "%");
+
+
+        //Condition Profit or Loss
+        var result_margin = "";
+        var result_revenue = "";
+
+        if(margin < 0){
+            result_margin = margin + "%";
+            result_revenue = "RM" + gross;
+
+
+            $('#gross_margin i').addClass("ti-arrow-down text-danger");
+            $('#gross_margin span').addClass("text-danger");
+
+
+            $('#revenue_stat i').addClass("ti-arrow-down text-danger");
+            $('#revenue_stat span').addClass("text-danger");
+
+
+        }else{
+            //result_margin = '<i class="ti-arrow-up text-info"></i> <span class="text-info">'+ margin +'% </span>';
+            result_margin = margin + "%";
+
+            result_revenue = "RM" + gross;
+
+            $('#gross_margin i').addClass("ti-arrow-up text-info");
+            $('#gross_margin span').addClass("text-info");
+
+            $('#revenue_stat i').addClass("ti-arrow-up text-info");
+            $('#revenue_stat span').addClass("text-info");
+        }
+
+        //Write into HTML
+        $('#gross_margin span').text(result_margin);
+        $('#revenue_stat span').text(result_revenue);
+
+
     });
 
 
