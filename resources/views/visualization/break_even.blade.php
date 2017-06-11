@@ -40,14 +40,14 @@
         resetCanvas();
 
 
-        //Get Sell price from user
+        //Get Sell price from users
 
         var sell = $('#sell_price').val();
         sell = parseFloat(sell);
         console.log(sell);
 
         //Single Data
-        var cost = {{ number_format($total, 2, '.', ',') }};
+        var cost = {{ number_format($total/$recipe->quantity,2, '.', ',')  }};
         var quantity = {{$recipe->quantity}};
 
 

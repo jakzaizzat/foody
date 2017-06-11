@@ -16,6 +16,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/stat', 'HomeController@stat');
+
 //Recipe
 Route::get('/recipes', 'RecipesController@index')->name('recipes');
 

@@ -71,7 +71,24 @@
                   <div class="white-box">
                       <h3 class="box-title">Bonus Tips</h3>
                       <hr>
-                      <h4><i class="ti-mobile"></i> 9998979695 (Toll Free)</h4> <small>Please contact with us if you have any questions. We are avalible 24h.</small> </div>
+                      <h4><i class="ti-mobile"></i> 9998979695 (Toll Free)</h4> <small>Please contact with us if you have any questions. We are avalible 24h.</small>
+                  </div>
+                  <div class="white-box">
+                  <form class="no-bg-addon" method="POST" action="/recipes/add">
+                      <div class="form-group">
+                          <h3 class="box-title">KG - TBSP Conversion</h3>
+                          <hr>
+                      </div>
+                      <div class="form-group">
+                          <label>KG</label>
+                          <input type="number" id="kg" name="kg" placeholder="kg" class="form-control"/>
+                      </div>
+                      <div class="form-group">
+                          <label>TBSP</label>
+                          <input type="number" id="tbsp" name="tbsp" placeholder="tbsp" class="form-control" />
+                      </div>
+                  </form>
+                  </div>
               </div>
           </div>
 
@@ -95,7 +112,7 @@
                                 </div>
                                 <div class="form-group">
                                     <p class="text-muted m-b-30 font-13" id="unit_text">Unit</p>
-                                    <input class="typeahead form-control" id="unit" type="number" name="volume" placeholder="How much do you used?"> 
+                                    <input class="typeahead form-control" id="unit" type="text" name="volume" placeholder="How much do you used?">
                                     <input type="hidden" name="recipe_id" value="{{ $recipe->id }}">
                                     <input type="hidden" name="ingredient_name" id="ingredient_name">
                                 </div>
@@ -124,7 +141,7 @@
 
       <script type="text/javascript">
         
-
+        //Add New Ingredient
         $('#unit').click(function(){
           //var raw = $('#the-basics').text();
           //var replace = raw.replace(/ /g,"");
@@ -134,7 +151,23 @@
 
           $('#unit_text').text(unit);
           $('#ingredient_name').val(unit);
-        })
+        });
+
+        //KG to TBSP
+        $('#kg').keyup(function(event){
+            var kg = this.value;
+            var resultKG = kg * 67.628;
+            $('#tbsp').val(resultKG);
+        });
+
+        //TBSP to KG
+        $('#tbsp').keyup(function(event){
+            var tbsp = this.value;
+            var resultTBSP = tbsp * 0.0148;
+            $('#kg').val(resultTBSP);
+        });
+
+
 
       </script>
 

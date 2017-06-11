@@ -52,7 +52,7 @@
                               </div>
                               <div class="form-group">
                                   <div class="input-group">
-                                      <input class="form-control" type="number" placeholder="How much do you pay for it?" id="price" name="price" required>
+                                      <input class="form-control" type="text" placeholder="How much do you pay for it?" id="price" name="price" required>
                                       <div class="input-group-addon"><i class="ti-bolt-alt"></i></div>
                                   </div>
                               </div>
@@ -69,6 +69,7 @@
                                       <option>tbsp</option>
                                       <option>litre</option>
                                       <option>militre</option>
+                                      <option>unit</option>
                                   </select>
                               </div>
                               <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
