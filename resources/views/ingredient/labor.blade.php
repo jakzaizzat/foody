@@ -54,7 +54,8 @@
                   <div class="er-row">
                     <div class="er-text">
                       <h3>{{ $ingredient->name }}</h3><span class="text-muted">{{ $ingredient->pivot->portion }} {{ $ingredient->unit }} </span></div>
-                    <div class="er-count ">RM<span class="counter"> {{ number_format($ingredient->pivot->portion / $ingredient->volume * $ingredient->price, 2, '.', ',') }}</span></div>
+                    <div class="er-count ">RM
+                      <span class="counter"> {{ number_format($ingredient->pivot->portion / $ingredient->volume * $ingredient->price, 2, '.', ',') }}</span></div>
                   </div>
                 </li>
               @endforeach

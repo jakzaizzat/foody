@@ -12,4 +12,8 @@ class Recipe extends Model
 	public function labors(){
 	    return $this->belongsToMany('App\Labor');
     }
+
+    public function utilites(){
+	    return $this->hasMany('App\Utilities');
+    }
 }

@@ -41,6 +41,8 @@ Route::get('/ingredient/{id}/edit', 'IngredientsController@edit');
 Route::post('/ingredient/{id}/edit', 'IngredientsController@update');
 Route::post('/ingredient/{id}/delete', 'IngredientsController@destroy');
 
+Route::post('/ingredient/{id}/deleteThis', 'IngredientsController@deleteList');
+
 Route::get('/recipe/{id}/items', 'IngredientsController@index')->name('recipeMaterial');
 Route::get('/recipe/{id}/production', 'IngredientsController@production')->name('recipeProduction');
 Route::get('/recipe/{id}/nonproduction', 'IngredientsController@nonproduction')->name('recipeNonProduction');
@@ -48,6 +50,13 @@ Route::get('/recipe/{id}/nonproduction', 'IngredientsController@nonproduction')-
 //Labor
 Route::get('/recipe/{id}/labor', 'LaborController@listLabor')->name('labor');
 Route::post('/recipe/{id}/labor/add', 'LaborController@store');
+Route::post('/labor/{id}/deleteThis', 'LaborController@deleteList');
+
+//Utilities
+Route::get('/recipe/{id}/utilities', 'UtilitiesController@listUtilities')->name('utilities');
+Route::post('/recipe/{id}/utilities/add', 'UtilitiesController@store');
+Route::post('/utilities/{id}/deleteThis', 'UtilitiesController@deleteList');
+
 
 //Calc Cost
 Route::get('/calcCost/{id}', 'RecipesController@calcCost')->name('calcCost');
@@ -63,6 +72,7 @@ Route::get('/recipe/{id}/analysis', 'RecipesController@viewVisualization');
 //Fetch Data
 Route::get('/spiderjson/{id}', 'VisualizationController@spiderShow');
 Route::get('/laborcost/{id}', 'VisualizationController@calcLabor');
+Route::get('/utilitycost/{id}', 'VisualizationController@calcUtility');
 Route::get('/timelinejson/{id}', 'VisualizationController@timeline');
 
 

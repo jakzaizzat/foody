@@ -53,8 +53,23 @@
                               <li>
                                   <div class="er-row">
                                       <div class="er-text">
-                                          <h3>{{ $ingredient->name }}</h3><span class="text-muted">{{ $ingredient->pivot->portion }} {{ $ingredient->unit }} </span></div>
-                                      <div class="er-count ">RM<span class="counter"> {{ number_format($ingredient->pivot->portion / $ingredient->volume * $ingredient->price, 2, '.', ',') }}</span></div>
+                                          <h3>{{ $ingredient->name }}</h3>
+                                          <span class="text-muted">{{ $ingredient->pivot->portion }} {{ $ingredient->unit }} </span>
+                                      </div>
+                                      <div class="er-count ">RM
+                                          <span class="counter"> {{ number_format($ingredient->pivot->portion / $ingredient->volume * $ingredient->price, 2, '.', ',') }}</span>
+
+                                          {{--<a href="/ingredient/{{ $ingredient->id }}/deleteThis"><i class="fa fa-times delete_icon"></i></a>--}}
+
+                                          <form method="post" action="{!! action('IngredientsController@deleteList', $ingredient->id ) !!}" style="display: inline-block;">
+                                              <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                                              <input type="hidden" name="recipe_id" value="{{ $recipe->id }}">
+                                              <div>
+                                                  <button type="submit" class="btn btn-xs"><i class="fa fa-times delete_icon"></i></button>
+                                              </div>
+                                          </form>
+
+                                      </div>
                                   </div>
                               </li>
                               @endforeach
@@ -69,9 +84,10 @@
 
               <div class="col-md-3 col-lg-3 col-sm-5">
                   <div class="white-box">
-                      <h3 class="box-title">Bonus Tips</h3>
+                      <h3 class="box-title">What is Material Cost?</h3>
                       <hr>
-                      <h4><i class="ti-mobile"></i> 9998979695 (Toll Free)</h4> <small>Please contact with us if you have any questions. We are avalible 24h.</small>
+                      <h4><i class="ti-shopping-cart"></i> The amount of money invested in the production of a product</h4>
+                      <small>Example: chicken, egg, butter, and any ingredient titem</small>
                   </div>
                   <div class="white-box">
                   <form class="no-bg-addon" method="POST" action="/recipes/add">

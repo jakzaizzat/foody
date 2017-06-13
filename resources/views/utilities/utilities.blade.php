@@ -13,11 +13,12 @@
                 <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                     <h4 class="page-title">{{ $recipe->name }}</h4> </div>
                 <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                    <a href="/recipe/{{ $recipe->id  }}/utilities" class="btn btn-success pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Next to Utilities</a>
+                    <a href="/recipe/{{ $recipe->id  }}" class="btn btn-success pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Finish</a>
                     <ol class="breadcrumb">
                         <li class="active"><a href="/recipes">Dashboard</a></li>
                         <li class="active"><a href="/recipe/{{ $recipe->id  }}/items">Ingredient</a></li>
-                        <li class="active">Labor</li>
+                        <li class="active"><a href="/recipe/{{ $recipe->id  }}/labor">Labor</a></li>
+                        <li class="active">Utilites</li>
                     </ol>
                 </div>
                 <!-- /.col-lg-12 -->
@@ -26,7 +27,7 @@
             <!-- /.row -->
 
             <div class="progress progress-lg">
-                <div class="progress-bar progress-bar-success" role="progressbar" style="width: 66%; role="progressbar""> 66% </div>
+                <div class="progress-bar progress-bar-success" role="progressbar" style="width: 80%; role="progressbar""> 80% </div>
         </div>
 
         @if (session('status'))
@@ -41,8 +42,8 @@
                     <div class="p-20">
                         <div class="row">
                             <div class="col-xs-8">
-                                <h4 class="m-b-0">List items</h4>
-                                <h2 class="m-t-0 font-medium">Labor Cost</h2>
+                                <h4 class="m-b-0">List Expenses</h4>
+                                <h2 class="m-t-0 font-medium">Utilities Cost</h2>
                             </div>
                             <div class="col-xs-4 p-20">
                             </div>
@@ -51,25 +52,24 @@
                     <div class="panel-footer bg-extralight">
                         <ul class="earning-box">
 
-                            @foreach($labors as $labor)
+                            @foreach($utilities as $utility)
                                 <li>
                                     <div class="er-row">
                                         <div class="er-text">
-                                            <h3>{{ $labor->name }}</h3><span class="text-muted">RM{{ $labor->salary  }}/{{ $labor->time_based  }}</span></div>
+                                            <h3>{{ $utility->name }}</h3><span class="text-muted">RM{{ $utility->payment  }}/month</span></div>
                                         <div class="er-count ">
                                             <span class="counter">
 
-                                                RM {{ number_format($labor->cost, 2, '.', ',')  }}
+                                                RM {{ number_format($utility->cost, 2, '.', ',')  }}
                                             </span>
 
-                                            <form method="post" action="{!! action('LaborController@deleteList', $labor->id ) !!}" style="display: inline-block;">
+                                            <form method="post" action="{!! action('UtilitiesController@deleteList', $utility->id ) !!}" style="display: inline-block;">
                                                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                                                 <input type="hidden" name="recipe_id" value="{{ $recipe->id }}">
                                                 <div>
                                                     <button type="submit" class="btn btn-xs"><i class="fa fa-times delete_icon"></i></button>
                                                 </div>
                                             </form>
-
                                         </div>
                                     </div>
                                 </li>
@@ -85,10 +85,11 @@
 
             <div class="col-md-3 col-lg-3 col-sm-5">
                 <div class="white-box">
-                    <h3 class="box-title">What is Labor Cost?</h3>
+                    <h3 class="box-title">What is Utilities Cost?</h3>
                     <hr>
-                    <h4><i class="ti-user"></i> Sum of all wages paid to employees including yourself.</h4>
-                    <small>Example: assistant and yourself</small>
+                    <h4><i class="ti-plug"></i> The cost of usage of utilities such as lighting, water, and heat</h4>
+                    <small>Example: Electricity, rent, Water</small>
+                </div>
             </div>
         </div>
 
@@ -97,27 +98,22 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="modal-title">Add your Labor Cost</h4>
+                        <h4 class="modal-title">Add your Utilities expenses</h4>
                     </div>
 
-                    <form method="POST" action="/recipe/{{ $recipe->id  }}/labor/add">
+                    <form method="POST" action="/recipe/{{ $recipe->id  }}/utilities/add">
                         {{ csrf_field() }}
                         <div class="modal-body">
                             <div class="form-group">
-                                <input class="form-control" id="labor_name" type="text" name="labor_name" placeholder="Name of your labor?">
+                                <input class="form-control" id="utility_name" type="text" name="utility_name" placeholder="Name of your utilities expenses?">
                             </div>
                             <div class="form-group">
-                                <input class="form-control" id="salary" type="text" name="salary" placeholder="How much its salary?">
+                                <input class="form-control" id="payment" type="text" name="payment" placeholder="How much do you pay each month? (RM)">
                             </div>
                             <div class="form-group">
-                                <select class="form-control" name="time_based">
-                                    <option>Monthly</option>
-                                    <option>Daily</option>
-                                    <option>Hourly</option>
-                                </select>
+                                <input class="form-control" id="unit_per_day" type="text" name="unit_per_day" placeholder="How much unit are you able to produce in one day?">
                             </div>
                             <div class="form-group">
-                                <input class="form-control" id="time_consume" type="number" name="time_consume" placeholder="Time consume to make this {{ $recipe->quantity }} recipe? (minutes)">
                                 <input type="hidden" value="{{ $recipe->id  }}" name="recipe_id">
                             </div>
                         </div>

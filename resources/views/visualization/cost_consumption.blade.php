@@ -12,19 +12,21 @@
 
         var url_ing = "/spiderjson/{{ $recipe->id }}";
         var url_labor = "/laborcost/{{ $recipe->id }}";
-
+        var url_utility = "/utilitycost/{{ $recipe->id }}";
 
 
         var labels = [],data=[];
 
         $.when(
             $.getJSON(url_ing),
-            $.getJSON(url_labor)
-        ).done(function(result1,result2){
+            $.getJSON(url_labor),
+            $.getJSON(url_utility)
+        ).done(function(result1,result2,result3){
 
 
             console.log(result1);
             console.log(result2);
+            console.log(result3);
 
             for (var i = 0; i < result1[0].length; i++) {
 
@@ -46,6 +48,14 @@
                 console.log(result2[0][j].cost);
             }
 
+            console.log("-----------UTILITY------------");
+            for (var j = 0; j < result3[0].length; j++) {
+                labels.push(result3[0][j].name);
+                console.log(result3[0][j].name);
+                data.push(result3[0][j].cost);
+                console.log(result3[0][j].cost);
+            }
+
 
 
 
@@ -56,11 +66,7 @@
                     {
                         data : data,
                         backgroundColor: [
-                            "#2cabe3",
-                            "#edf1f5",
-                            "#b4c1d7",
-                            "#53e69d",
-                            "#ff7676"
+                            '#3366CC','#DC3912','#FF9900','#109618','#990099','#3B3EAC','#0099C6','#DD4477','#66AA00','#B82E2E','#316395','#994499','#22AA99','#AAAA11','#6633CC','#E67300','#8B0707','#329262','#5574A6','#3B3EAC'
                         ]
                     }
                 ]

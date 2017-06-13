@@ -82,6 +82,16 @@ class LaborController extends Controller
 
     }
 
+    public function deleteList($id){
+        $labor = Labor::whereId($id)->firstOrFail();
+
+        $recipe_id = request('recipe_id');
+
+        $labor->delete();
+
+        //return redirect('recipeMaterial')->with('status', 'The ingredient #'.$id.' has been deleted!');
+        return redirect('recipe/'.$recipe_id.'/labor')->with('status', 'The Labor #'.$id.' has been deleted!');
+    }
 
     public function show($id)
     {

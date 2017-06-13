@@ -29,6 +29,7 @@
         $('#revenue_stat i').removeClass("ti-arrow-down ti-arrow-up text-info text-danger");
         $('#gross_margin span').removeClass("text-info text-danger");
         $('#revenue_stat span').removeClass("text-info text-danger");
+        $('#break_even span').removeClass("text-info text-danger");
 
         //reset
         var resetCanvas = function(){
@@ -94,9 +95,16 @@
         console.log(dataSell);
 
         console.log("You need to sell " + breakeven + " units to cover your fund");
-
-        //$('#breakeven_msg').text("You need to sell " + breakeven + " units to cover your fund");
         $('#break_even span').text("You need to sell " + breakeven + " units to cover your fund");
+
+        if(breakeven < 1){
+            $('#break_even i').addClass("ti-arrow-down text-danger");
+            $('#break_even span').addClass("text-danger");
+        }else{
+            $('#break_even i').addClass("ti-arrow-up text-info");
+            $('#break_even span').addClass("text-info");
+        }
+
 
         var ctx1 = document.getElementById("chart1").getContext("2d");
         var data1 = {

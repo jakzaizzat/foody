@@ -151,5 +151,18 @@ class IngredientsController extends Controller
         return redirect('recipes')->with('status', 'The ingredient #'.$id.' has been deleted!');
     }
 
+    public function deleteList($id){
+        $ingredient = Ingredient::whereId($id)->firstOrFail();
+
+        $recipe_id = request('recipe_id');
+
+        DB::table('ingredient_recipe')
+            ->where('ingredient_id', $id)
+            ->where('recipe_id', $recipe_id)
+            ->delete();
+
+        //return redirect('recipeMaterial')->with('status', 'The ingredient #'.$id.' has been deleted!');
+        return redirect('recipe/'.$recipe_id.'/items')->with('status', 'The ingredient #'.$id.' has been deleted!');
+    }
 
 }

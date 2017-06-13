@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Ingredient;
 use Illuminate\Http\Request;
 use App\Recipe;
+use App\Labor;
+use App\Utilities;
 use DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -27,11 +29,27 @@ class RecipesController extends Controller
 
         $total = 0;
 
+        //Ingredient
         foreach ($recipe->ingredients as $ingredient){
             $total += $ingredient->pivot->portion/$ingredient->volume * $ingredient->price ;
         }
-		
-        return view('recipes.show', compact('recipe','total'));
+
+        //Labor
+        $labors = Labor::where('recipe_id', $id)->get();
+        foreach ($labors as $labor){
+            $total += $labor->cost;
+        }
+
+        //Utilities
+        $utilities = Utilities::where('recipe_id', $id)->get();
+        foreach ($utilities as $utility){
+            $total += $utility->cost;
+        }
+
+
+
+
+        return view('recipes.show', compact('recipe','total', 'labors', 'utilities'));
         //return $json;
     }
 

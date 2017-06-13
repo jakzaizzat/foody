@@ -69,7 +69,7 @@
                   <div class="white-box">
                       <h3 class="box-title">Cost Each</h3>
                       <ul class="list-inline m-t-30 p-t-10 two-part">
-                          <li><i class="icon-bag text-purple"></i></li>
+                          <li><i class="fa fa-money text-purple"></i></li>
                           <li class="text-right">RM<span class="counter">{{ number_format($total/$recipe->quantity,2, '.', ',')  }}</span></li>
                       </ul>
                   </div>
@@ -78,8 +78,8 @@
                   <div class="white-box">
                       <h3 class="box-title">Quantity</h3>
                       <ul class="list-inline m-t-30 p-t-10 two-part">
-                          <li><i class="fa fa-money text-success"></i></li>
-                          <li class="text-right">RM<span class="counter">{{$recipe->quantity}}</span>{{$recipe->yield_type}}</li>
+                          <li><i class="icon-bag text-success"></i></li>
+                          <li class="text-right"><span class="counter">{{$recipe->quantity}} </span>{{$recipe->yield_type}}</li>
                       </ul>
                   </div>
               </div>
@@ -122,6 +122,70 @@
                                          </td>
                                   </tr>
                                   @endforeach
+                                    <?php $key = 0; ?>
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-md-12 col-lg-12 col-sm-12">
+                  <div class="white-box">
+                      <h3 class="box-title">List of Labor Cost</h3>
+                      <div class="table-responsive">
+                          <table class="table">
+                              <thead>
+                              <tr>
+                                  <th>#</th>
+                                  <th>Name</th>
+                                  <th>Salary</th>
+                                  <th>Time consumed to make this Recipe</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                              @foreach($labors as $labor)
+                                  <tr>
+                                      <td>{{ ++$key  }}</td>
+                                      <td class="txt-oflo">{{ $labor->name }}</td>
+                                      <td class="txt-oflo">RM{{ $labor->salary }}/ {{ $labor->time_based }}</td>
+                                      <td class="txt-oflo">
+                                          {{ $labor->time_consume }} minutes
+                                      </td>
+                                  </tr>
+                              @endforeach
+                              <?php $key = 0; ?>
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <div class="row">
+              <div class="col-md-12 col-lg-12 col-sm-12">
+                  <div class="white-box">
+                      <h3 class="box-title">List of Utilities Cost</h3>
+                      <div class="table-responsive">
+                          <table class="table">
+                              <thead>
+                              <tr>
+                                  <th>#</th>
+                                  <th>Name</th>
+                                  <th>Payment</th>
+                                  <th>Unit able to produce in one day</th>
+                              </tr>
+                              </thead>
+                              <tbody>
+                              @foreach($utilities as $utility)
+                                  <tr>
+                                      <td>{{ ++$key  }}</td>
+                                      <td class="txt-oflo">{{ $utility->name }}</td>
+                                      <td class="txt-oflo">RM{{ $utility->payment }}/ Month</td>
+                                      <td class="txt-oflo">{{ $utility->unit_per_day }} </td>
+                                  </tr>
+                              @endforeach
                               </tbody>
                           </table>
                       </div>
