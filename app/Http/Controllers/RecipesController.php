@@ -127,6 +127,13 @@ class RecipesController extends Controller
     public function destroy($id){
         $recipe = Recipe::whereId($id)->firstOrFail();
         $recipe->delete();
+
+        //Delete related ingredient from ingredient_recipe
+        DB::table('ingredient_recipe')->where('recipe_id', $id)->delete();
+        DB::table('labors')->where('recipe_id', $id)->delete();
+        DB::table('utilities')->where('recipe_id', $id)->delete();
+
+
         return redirect('recipes')->with('status', 'The recipe #'.$id.' has been deleted!');
     }
 

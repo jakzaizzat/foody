@@ -85,7 +85,6 @@
                           <form method="POST"  action="/ingredient/add">
                               <div class="form-group">
                                   <h3 class="box-title m-b-0">Search</h3>
-                                  <p class="text-muted m-b-30 font-13"> When initializing a typeahead, you pass the plugin method one or more datasets. The source of a dataset is responsible for computing a set of suggestions for a given query.</p>
                                   <div id="the-basics">
                                     <input class="typeahead form-control" type="text" placeholder="Countries"> 
                                   </div>

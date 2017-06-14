@@ -163,13 +163,20 @@
           //var replace = raw.replace(/ /g,"");
           //var unit = replace.substring(2);
           
-          var unit = $('input.typeahead.tt-input').val();
-          unit = unit.split('(').pop().split(')').shift();
+          var string = $('input.typeahead.tt-input').val();
+
+          var unit = string.split('(').pop().split(')').shift();
           unit = "Unit in: " + unit;
-          console.log("Select: " + unit);
+
+          var indexSymb = string.indexOf("(");
+          console.log("Index : " + indexSymb);
+          var ing_name = string.substring(0, indexSymb - 1);
 
           $('#unit_text').text(unit);
-          $('#ingredient_name').val(unit);
+          $('#ingredient_name').val(ing_namea);
+
+            console.log("Select: " + unit);
+            console.log("Ingredient name " + ing_name );
         });
 
         //KG to TBSP
