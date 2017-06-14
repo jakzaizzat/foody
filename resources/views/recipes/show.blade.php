@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-
+@section('title', 'List Recipes')
 
 @section('content')
   
@@ -56,12 +56,7 @@
                       <h3 class="box-title">Recipe Cost</h3>
                       <ul class="list-inline m-t-30 p-t-10 two-part">
                           <li><i class="icon-notebook text-info"></i></li>
-                          <li class="text-right">RM
-                            <span class="counter">
-
-                              {{ number_format($total, 2, '.', ',') }}
-                            </span>
-                          </li>
+                          <li class="text-right">RM<span class="counter">{{ number_format($total, 2, '.', ',') }}</span></li>
                       </ul>
                   </div>
               </div>

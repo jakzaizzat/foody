@@ -114,12 +114,13 @@
                       </div>
                   </div>
 
-                  <div class="col-md-3 col-lg-3 col-sm-5">
-                    <div class="white-box">
-                        <h3 class="box-title">Bonus Tips</h3>
-                        <hr>
-                        <h4><i class="ti-mobile"></i> 9998979695 (Toll Free)</h4> <small>Please contact with us if you have any questions. We are avalible 24h.</small> </div>
-                </div>
+              <div class="col-md-3 col-lg-3 col-sm-5">
+                  <div class="white-box">
+                      <h3 class="box-title">HELP</h3>
+                      <hr>
+                      <small>Example: I paid RM10 for 1 tray of eggs ( 30 unit)</small>
+                  </div>
+              </div>
 
 
               <!-- ============================================================== -->

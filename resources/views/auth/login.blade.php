@@ -1,5 +1,5 @@
 @extends('layouts.auth')
-
+@section('title', 'Login')
 @section('content') 
 
 
@@ -49,7 +49,7 @@
               <input id="checkbox-signup" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
               <label for="checkbox-signup"> Remember me </label>
             </div>
-            <a href="{{ route('password.request') }}" id="to-recover" class="text-dark pull-right"><i class="fa fa-lock m-r-5"></i> Forgot pwd?</a> </div>
+            </div>
         </div>
 
 
