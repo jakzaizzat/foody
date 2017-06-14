@@ -1,23 +1,38 @@
 @extends('layouts.master')
 
-@section('content') 
+@section('content')
 
-  <header class="non_hero">
-    <div class="container">
-       @include('layouts.navbar')
-    </div>
-  </header>
 
-  <section class="case-study add_recipe">
-    <div class="container">
-      
-      <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-          <h1 class="heading purple">Edit Recipe #{{ $recipe->id }}</h1>
-            <form method="POST">
-              {{ csrf_field() }}
+  @include('layouts.navbar')
 
-              @if(count($errors))
+  <!-- Page Content -->
+  <!-- ============================================================== -->
+  <div id="page-wrapper">
+    <div class="container-fluid">
+      <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+          <h4 class="page-title"></h4> </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+          <ol class="breadcrumb">
+            <li class="active"><a href="/recipes">Dashboard</a></li>
+            <li class="active">Add New Recipe</li>
+          </ol>
+        </div>
+        <!-- /.col-lg-12 -->
+      </div>
+      <!-- /.row -->
+
+
+      <div class="col-md-6 col-md-offset-3 col-sm-12">
+        <div class="white-box">
+          <center>
+            <h3 class="box-title m-b-0">New Recipe Form</h3>
+            <p class="text-muted m-b-30 font-13"> Enter below detail</p>
+          </center>
+          <form class="no-bg-addon" method="POST">
+            {{ csrf_field() }}
+
+            @if(count($errors))
               <div class="row">
                 <div class="columns">
                   @foreach($errors->all() as $error)
@@ -27,125 +42,55 @@
                   @endforeach
                 </div>
               </div>
-              @endif
+            @endif
 
-              <div class="row">
-                <div class="columns form-group">
-                  <label for="exampleEmailInput">Recipe name</label>
-                  <input class="form-control" type="text" placeholder="Nasi Lemak" id="name" name="name" value="{{ $recipe->name }}"  required>
-                </div>
+            <div class="form-group">
+              <div class="input-group">
+                <input class="form-control" type="text" placeholder="Recipe Name? " id="name" name="name" value="{{ $recipe->name }}" required>
+                <div class="input-group-addon"><i class="ti-shopping-cart"></i></div>
               </div>
-              <div class="row">
-                <div class="columns form-group">
-                  <label for="exampleEmailInput">Quantity produced</label>
-                  <input class="form-control" type="number" placeholder="100" id="quantity" name="quantity" value="{{ $recipe->quantity }}"  required>
-                </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                <input class="form-control" type="number" placeholder="How much yield count?" id="quantity" name="quantity" value="{{ $recipe->quantity }}" required>
+                <div class="input-group-addon"><i class="ti-bolt-alt"></i></div>
               </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                <input class="form-control" type="text" placeholder="Yield units" id="yield_type" name="yield_type" value="{{ $recipe->yield_type }}" >
+                <div class="input-group-addon"><i class="ti-money"></i></div>
+              </div>
+            </div>
 
-              <div class="row">
-                <div class="columns form-group">
-                  <label for="exampleEmailInput">Profit Margin %</label>
-                  <input class="form-control" type="number" placeholder="10" id="margin" name="margin" value="{{ $recipe->margin }}"  required>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="columns form-group">
-                  <label for="exampleEmailInput">How many product could be produce in one day?</label>
-                  <input class="form-control" type="number" placeholder="10" id="itemPerDay" name="itemPerDay" value="{{ $recipe->itemPerDay }}">
-                </div>
-              </div>
-
-              <input type="hidden" name="cost" value="{{ $recipe->cost }}">
-
-              <div class="row">
-                <input class="btn btn-submit" type="submit" value="Submit">
-              </div>
-            </form> 
+            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+            <button class="btn btn-block btn-danger btn-lg btn-rounded">Update</button>
+          </form>
         </div>
       </div>
 
-      
+      <div class="col-md-3 col-lg-3 col-sm-5">
+        <div class="white-box">
+          <h3 class="box-title">Example</h3>
+          <hr>
+          <h4>I want to create a "Nasi Ayam" recipe for 5 peoples</h4>
+          <small>Recipe Name: "Nasi Ayam"</small>
+          <br>
+          <small>Yield Count: 5</small>
+          <br>
+          <small>Yield Type: Plate</small>
+        </div>
+      </div>
+
+
+      <!-- ============================================================== -->
+      <!-- end right sidebar -->
+      <!-- ============================================================== -->
     </div>
-  </section>
-@endsection
-
-
-
-@section('content')
-<div class="container">
-  <div class="row">
-    <div class="one-half offset-by-three column" style="margin-top: 10%">
-      
-      <form method="POST>
-        {{ csrf_field() }}
-
-        @if(count($errors))
-        <div class="row">
-          <div class="columns">
-            @foreach($errors->all() as $error)
-              <li>
-                <u>{{ $error }}</u>
-              </li>
-            @endforeach
-          </div>
-        </div>
-        @endif
-
-        <div class="row">
-          <div class="columns">
-            <label for="exampleEmailInput">Recipe name</label>
-            <input class="u-full-width" type="text" placeholder="Nasi Lemak" id="name" name="name" value="{{ $recipe->name }}" required>
-          </div>
-        </div>
-        <div class="row">
-          <div class="columns">
-            <label for="exampleEmailInput">Quantity produced</label>
-            <input class="u-full-width" type="number" placeholder="100" id="quantity" name="quantity" value="{{ $recipe->quantity }}" required>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="columns">
-            <label for="exampleEmailInput">Profit Margin %</label>
-            <input class="u-full-width" type="number" placeholder="Nasi Lemak" id="margin" name="margin" >
-          </div>
-        </div>
-
-        <input class="button-primary" type="submit" value="Submit">
-      </form>
-
-    </div>
+    <!-- /.container-fluid -->
+    @include('layouts.footer')
   </div>
-</div>
 
-
-  <script>
-// Get the modal
-var modal = document.getElementById('myModal');
-
-// Get the button that opens the modal
-var btn = document.getElementById("addIngredient");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-    modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-</script>
 
 @endsection
+

@@ -105,17 +105,8 @@ class RecipesController extends Controller
 
         $recipe->name = $request->get('name');
         $recipe->quantity = $request->get('quantity');
-        $recipe->margin = $request->get('margin');
-        $recipe->itemPerDay = $request->get('itemPerDay');
-        
-        //Recalculate the cost
-        $ingredients = $recipe->ingredients;
-
-        $ingredients = $ingredients->where('type', '!=', 'nonproduction');
-
-        $cost = $ingredients->sum('cost');
-
-        $recipe->cost = $cost;
+        $recipe->yield_type = $request->get('yield_type');
+        $recipe->user_id = $request->get('user_id');
 
 
         $recipe->save();
