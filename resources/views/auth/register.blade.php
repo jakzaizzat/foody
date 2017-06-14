@@ -16,7 +16,7 @@
         {{ csrf_field() }}  
 
 
-        <a href="javascript:void(0)" class="text-center db"><img src="../plugins/images/admin-logo-dark.png" alt="Home" /><br/><img src="../plugins/images/admin-text-dark.png" alt="Home" /></a> 
+        <a href="javascript:void(0)" class="text-center db"><img src="../plugins/images/admin-text-dark.png" alt="Home" /></a>
         <h3 class="box-title m-t-40 m-b-0">Register Now</h3><small>Create your account and enjoy</small> 
         
 

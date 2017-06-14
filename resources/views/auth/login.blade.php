@@ -13,7 +13,7 @@
       <form class="form-horizontal form-material" id="loginform"role="form" method="POST" action="{{ route('login') }}">
         
         {{ csrf_field() }}
-        <a href="javascript:void(0)" class="text-center db"><img src="/plugins/images/admin-logo-dark.png" alt="Home" /><br/><img src="/plugins/images/admin-text-dark.png" alt="Home" /></a>  
+        <a href="javascript:void(0)" class="text-center db"><img src="/plugins/images/admin-text-dark.png" alt="Home" /></a>
         
         <div class="form-group m-t-40 {{ $errors->has('email') ? ' has-error' : '' }}">
           <div class="col-xs-12">

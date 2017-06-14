@@ -89,8 +89,8 @@
                     <hr>
                     <h4><i class="ti-user"></i> Sum of all wages paid to employees including yourself.</h4>
                     <small>Example: assistant and yourself</small>
+                </div>
             </div>
-        </div>
 
         <div id="responsive-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
             <div class="modal-dialog">

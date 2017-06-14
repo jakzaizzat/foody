@@ -30,7 +30,7 @@
 
 
               <div class="row">
-                  <div class="col-lg-3 col-sm-6 col-xs-12">
+                  <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="white-box">
                           <h3 class="box-title">total recipes</h3>
                           <ul class="list-inline m-t-30 p-t-10 two-part">
@@ -39,30 +39,12 @@
                           </ul>
                       </div>
                   </div>
-                  <div class="col-lg-3 col-sm-6 col-xs-12">
+                  <div class="col-lg-6 col-sm-6 col-xs-12">
                       <div class="white-box">
                           <h3 class="box-title">total ingredient</h3>
                           <ul class="list-inline m-t-30 p-t-10 two-part">
                               <li><i class="icon-bag text-purple"></i></li>
                               <li class="text-right"><span class="counter">{{ $totalIng }}</span></li>
-                          </ul>
-                      </div>
-                  </div>
-                  <div class="col-lg-3 col-sm-6 col-xs-12">
-                      <div class="white-box">
-                          <h3 class="box-title">AVG Profit Margin</h3>
-                          <ul class="list-inline m-t-30 p-t-10 two-part">
-                              <li><i class="icon-graph text-danger"></i></li>
-                              <li class="text-right"><span class="">311</span></li>
-                          </ul>
-                      </div>
-                  </div>
-                  <div class="col-lg-3 col-sm-6 col-xs-12">
-                      <div class="white-box">
-                          <h3 class="box-title">AVG Cost Price</h3>
-                          <ul class="list-inline m-t-30 p-t-10 two-part">
-                              <li><i class="fa fa-money text-success"></i></li>
-                              <li class="text-right"><span class="">117</span></li>
                           </ul>
                       </div>
                   </div>
@@ -99,6 +81,22 @@
                                                 <?php
                                                   $total += $ingredient->pivot->portion/$ingredient->volume * $ingredient->price ;
                                                 ?>
+                                              @endforeach
+
+                                              @foreach ($labors as $labor)
+                                                  @if($labor->recipe_id == $recipe->id)
+                                                    <?php
+                                                        $total += $labor->cost;
+                                                    ?>
+                                                  @endif
+                                              @endforeach
+
+                                              @foreach ($utilities as $utility)
+                                                  @if($utility->recipe_id == $recipe->id)
+                                                      <?php
+                                                        $total += $utility->cost;
+                                                      ?>
+                                                  @endif
                                               @endforeach
 
                                               {{ number_format($total, 2, '.', ',') }}

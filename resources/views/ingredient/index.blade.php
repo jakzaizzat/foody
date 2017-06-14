@@ -134,7 +134,7 @@
                                 </div>
                                 <div class="form-group">
                                     <small>Not found the ingredient? Add one now.</small>
-                                    <a href="/ingredient/new" class="btn btn-sm btn-primary btn-rounded">Add new ingredient</a>
+                                    <a href="/ingredient/new" target="_blank" class="btn btn-sm btn-primary btn-rounded">Add new ingredient</a>
                                 </div>
                         </div>
                         <div class="modal-footer">
@@ -163,7 +163,10 @@
           //var replace = raw.replace(/ /g,"");
           //var unit = replace.substring(2);
           
-          var unit = $('.tt-selectable').text();
+          var unit = $('input.typeahead.tt-input').val();
+          unit = unit.split('(').pop().split(')').shift();
+          unit = "Unit in: " + unit;
+          console.log("Select: " + unit);
 
           $('#unit_text').text(unit);
           $('#ingredient_name').val(unit);

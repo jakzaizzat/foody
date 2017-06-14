@@ -25,13 +25,14 @@ var states = ["Andorra","United Arab Emirates","Afghanistan","Antigua and Barbud
 
 //Filter
 
-$.getJSON("/ingredient/34/list", function (result) {
+
+$.getJSON("/ingredient/{{ Auth::user()->id }}/list", function (result) {
 
   var data = [];
 
   for (var i = 0; i < result.length; i++) {
-      //var temp = result[i].name + " (" + result[i].unit + ")";
-      data.push(result[i].name);
+      var temp = result[i].name + " (" + result[i].unit + ")";
+      data.push(temp);
   }
 
   console.log(data);

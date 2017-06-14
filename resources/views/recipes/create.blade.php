@@ -69,6 +69,19 @@
                       </div>
                   </div>
 
+                  <div class="col-md-3 col-lg-3 col-sm-5">
+                      <div class="white-box">
+                          <h3 class="box-title">Example</h3>
+                          <hr>
+                          <h4>I want to create a "Nasi Ayam" recipe for 5 peoples</h4>
+                          <small>Recipe Name: "Nasi Ayam"</small>
+                          <br>
+                          <small>Yield Count: 5</small>
+                          <br>
+                          <small>Yield Type: Plate</small>
+                      </div>
+                  </div>
+
 
               <!-- ============================================================== -->
               <!-- end right sidebar -->

@@ -1,16 +1,28 @@
-@extends('layouts.master')
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Foody | Your food Business Assistant</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/landing/custom.css">
 
-@section('content')
+    </script></head>
 
-
-<section id="wrapper" class="error-page container homepage">
-    <div class="row">
-        <div class="error-body text-center col-md-offset-2 col-md-8 home">
-            <h2 class="text-danger">Kickstart your F&B Business</h2>
-            <h3 >Foody - Food Business Assisstant</h3><a href="/login" class="btn btn-info btn-rounded waves-effect waves-light m-b-40">Login</a>
-            <a href="/register" class="btn btn-primary btn-rounded waves-effect waves-light m-b-40">Register</a>
+    <body>
+        <div class="topbar">
+            <div class="container">
+                <div class="header-logo">
+                    <span class="duolingo logo">Foody</span>
+                </div>
+                <a class="outline-btn" href="/login">Login</a>
+                <a class="outline-btn" href="/register" style="margin-right: 20px;">Register</a>
+                </div>
+                </div>
+                <div class="section hero">
+                <div class="container">
+                <h1>Let us help you Chef.</h1>
+                <div class="subheader">Foody is your starter kit for your business</div>
+                <span class="chatbot-illustration"></span>
+            </div>
         </div>
-    </div>
-</section>
-
-@endsection
+    </body>
+    </html>

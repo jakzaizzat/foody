@@ -21,7 +21,13 @@ class RecipesController extends Controller
         $totalRecipe = Recipe::where('user_id', $id)->get()->count();
         $totalIng = Ingredient::where('user_id', $id)->get()->count();
 
-    	return view('recipes.index', compact('recipes','totalRecipe', 'totalIng'));
+        //Labor
+        $labors = Labor::all();
+
+        //Utilities
+        $utilities = Utilities::all();
+
+    	return view('recipes.index', compact('recipes', 'labors', 'utilities', 'totalRecipe', 'totalIng'));
     }
 
     public function show($id){

@@ -49,13 +49,9 @@
                                       <div class="u-img"><img src="/plugins/images/users/varun.jpg" alt="user" /></div>
                                       <div class="u-text">
                                           <h4>{{ Auth::user()->name }}</h4>
-                                          <p class="text-muted">{{ Auth::user()->email }}</p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
+                                          <p class="text-muted">{{ Auth::user()->email }}</p></div>
                                   </div>
                               </li>
-                              <li role="separator" class="divider"></li>
-                              <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
-                              <li role="separator" class="divider"></li>
-                              <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
                               <li role="separator" class="divider"></li>
                               <li>
                                   <a href="{{ route('logout') }}"

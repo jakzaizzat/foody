@@ -67,9 +67,11 @@
                                       <option>kg</option>
                                       <option>g</option>
                                       <option>tbsp</option>
+                                      <option>tsp</option>
                                       <option>litre</option>
                                       <option>militre</option>
                                       <option>unit</option>
+                                      <option>pieces</option>
                                   </select>
                               </div>
                               <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
