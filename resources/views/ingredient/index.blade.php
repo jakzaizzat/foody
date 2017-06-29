@@ -90,20 +90,46 @@
                       <small>Example: chicken, egg, butter, and any ingredient titem</small>
                   </div>
                   <div class="white-box">
-                  <form class="no-bg-addon" method="POST" action="/recipes/add">
-                      <div class="form-group">
-                          <h3 class="box-title">KG - TBSP Conversion</h3>
-                          <hr>
-                      </div>
-                      <div class="form-group">
-                          <label>KG</label>
-                          <input type="number" id="kg" name="kg" placeholder="kg" class="form-control"/>
-                      </div>
-                      <div class="form-group">
-                          <label>TBSP</label>
-                          <input type="number" id="tbsp" name="tbsp" placeholder="tbsp" class="form-control" />
-                      </div>
-                  </form>
+                    <div class="form-group">
+                        <h3 class="box-title">KG - TBSP Conversion</h3>
+                        <hr>
+                    </div>
+                    <div class="form-group">
+                        <label>KG</label>
+                        <input type="number" id="kg" name="kg" placeholder="kg" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label>TBSP</label>
+                        <input type="number" id="tbsp" name="tbsp" placeholder="tbsp" class="form-control" />
+                    </div>
+                  </div>
+                  <div class="white-box">
+                    <div class="form-group">
+                        <h3 class="box-title">Cup - Gram Conversion</h3>
+                        <hr>
+                    </div>
+                    <div class="form-group">
+                        <label>Cup</label>
+                        <input type="number" id="cup" name="cup" placeholder="cup" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Gram</label>
+                        <input type="number" id="gram" name="gram" placeholder="gram" class="form-control" />
+                    </div>
+                  </div>
+                  <div class="white-box">
+                    <div class="form-group">
+                        <h3 class="box-title">Litre - Cup Conversion</h3>
+                        <hr>
+                    </div>
+                    <div class="form-group">
+                        <label>Litre</label>
+                        <input type="number" id="litre" name="litre" placeholder="litre" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Tbsp</label>
+                        <input type="number" id="cupL" name="cupL" placeholder="Cup" class="form-control" />
+                    </div>
                   </div>
               </div>
           </div>
@@ -121,7 +147,6 @@
                         <div class="modal-body">
                                 <div class="form-group">
                                     <h3 class="box-title m-b-0">Search</h3>
-                                    <p class="text-muted m-b-30 font-13"> When initializing a typeahead, you pass the plugin method one or more datasets. The source of a dataset is responsible for computing a set of suggestions for a given query.</p>
                                     <div id="the-basics">
                                       <input class="typeahead form-control" type="text" name="name" placeholder="Search ingredient"> 
                                     </div>
@@ -173,7 +198,7 @@
           var ing_name = string.substring(0, indexSymb - 1);
 
           $('#unit_text').text(unit);
-          $('#ingredient_name').val(ing_namea);
+          $('#ingredient_name').val(ing_name);
 
             console.log("Select: " + unit);
             console.log("Ingredient name " + ing_name );
@@ -191,6 +216,34 @@
             var tbsp = this.value;
             var resultTBSP = tbsp * 0.0148;
             $('#kg').val(resultTBSP);
+        });
+
+        //Cup to Gram 
+        $('#cup').keyup(function(event){
+            var cup = this.value;
+            var resultCup = cup * 340;
+            $('#gram').val(resultCup);
+        });
+
+        //Gram to Cup 
+        $('#gram').keyup(function(event){
+            var gram = this.value;
+            var resultGram = gram * 0.00422675281986;
+            $('#cup').val(resultGram);
+        });
+
+        //Litre to Cup 
+        $('#litre').keyup(function(event){
+            var litre = this.value;
+            var resultLitre = litre * 67.628;
+            $('#cupL').val(resultLitre);
+        });
+
+        //Cup to Litre 
+        $('#cupL').keyup(function(event){
+            var cupL = this.value;
+            var resultCup = cupL * 0.0147868;
+            $('#litre').val(resultCup);
         });
 
 

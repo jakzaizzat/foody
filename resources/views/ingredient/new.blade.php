@@ -58,7 +58,7 @@
                               </div>
                               <div class="form-group">
                                   <div class="input-group">
-                                      <input class="form-control" type="number" placeholder="How much amount you purchase?" id="volume" name="volume" >
+                                      <input class="form-control" type="text" placeholder="How much amount you purchase?" id="volume" name="volume" >
                                       <div class="input-group-addon"><i class="ti-money"></i></div>
                                   </div>
                               </div>

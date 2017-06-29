@@ -148,7 +148,7 @@ class IngredientsController extends Controller
     public function destroy($id){
         $ingredient = Ingredient::whereId($id)->firstOrFail();
         $ingredient->delete();
-        return redirect('recipes')->with('status', 'The ingredient #'.$id.' has been deleted!');
+        return redirect('ingredients')->with('status', 'The ingredient #'.$id.' has been deleted!');
     }
 
     public function deleteList($id){

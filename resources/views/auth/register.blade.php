@@ -48,7 +48,7 @@
 
         <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
           <div class="col-xs-12">
-            <input id="password" type="password" class="form-control" name="password" placeholder="Passoword" required>
+            <input id="password" type="password" class="form-control" name="password" placeholder="Password" required>
 
                 @if ($errors->has('password'))
                     <span class="help-block">

@@ -48,9 +48,9 @@
                                       </tr>
                                   </thead>
                                   <tbody>
-                                      @foreach($ingredients as $ing)
+                                      @foreach($ingredients as $key=>$ing)
                                       <tr>
-                                          <td class="text-center">1</td>
+                                          <td class="text-center">{{ ++$key  }}</td>
                                           <td><span class="font-medium">{{ $ing->name }}</span></td>
                                           <td>RM {{ $ing->price }}</td>
                                           <td>{{ $ing->volume }} {{ $ing->unit }}</td>

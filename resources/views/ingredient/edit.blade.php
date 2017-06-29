@@ -67,17 +67,12 @@
                               </div>
                              <div class="form-group">
                                   <select class="form-control" name="unit">
-                                      <option>kg</option>
-                                      <option>g</option>
-                                      <option>tbsp</option>
-                                      <option>litre</option>
-                                      <option>militre</option>
 
 
                                       @if($ingredient->unit == "kg")
                                         <option selected>kg</option>
                                        @else
-                                        <<option>kg</option>
+                                        <option>kg</option>
                                        @endif
                                        
                                        @if($ingredient->unit == "g")

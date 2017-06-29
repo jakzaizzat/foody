@@ -88,6 +88,7 @@ class RecipesController extends Controller
 
         //return view('recipes.show')->with('recipe', $last);
         return redirect()->route('recipeShow',[$id]);
+
     }
 
 
